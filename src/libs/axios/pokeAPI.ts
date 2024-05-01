@@ -1,5 +1,5 @@
-import { PokeRoot } from "../../type/abilityType";
-import { SpritesRoot } from "../../type/spritesType";
+import { PokeRoot } from "../../types/abilityType";
+import { SpritesRoot } from "../../types/spritesType";
 
 import { pocketmonInstance } from "./axiosInstance";
 
