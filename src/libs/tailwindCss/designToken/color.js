@@ -10,6 +10,7 @@ export const COLORS = {
     },
     COMMON: {
         red: "#C5312A",
+        "light-gray": "#e0e0e0",
     },
     POKETYPE: {
         rock: "#A1A1A1",
