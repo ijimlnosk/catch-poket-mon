@@ -46,10 +46,10 @@ const SigninPage: React.FC = () => {
             >
                 <div className="flex w-full">
                     <div className="w-2/5 flex flex-col justify-end items-center">
-                        <div className="w-full h-4 bg-black "></div>
+                        <div className="w-full h-4 bg-SYSTEM-black "></div>
                     </div>
-                    <div className="w-80 h-40  bg-black rounded-t-full flex flex-col justify-end items-center">
-                        <div className="w-60 h-32 bg-white rounded-t-full flex flex-col justify-end items-center">
+                    <div className="w-80 h-40  bg-SYSTEM-black rounded-t-full flex flex-col justify-end items-center">
+                        <div className="w-60 h-32 bg-SYSTEM-white rounded-t-full flex flex-col justify-end items-center">
                             <button
                                 onClick={handleSections}
                                 className="w-60 h-32  rounded-t-full hover:bg-COMMON-light-gray  transition-colors"
@@ -57,7 +57,7 @@ const SigninPage: React.FC = () => {
                         </div>
                     </div>
                     <div className="w-2/5 flex flex-col justify-end items-center">
-                        <div className="w-full h-4 bg-black "></div>
+                        <div className="w-full h-4 bg-SYSTEM-black "></div>
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@ const SigninPage: React.FC = () => {
                 }`}
             >
                 {/* loginForm */}
-                <div className="w-1/3 flex items-center justify-center flex-col bg-white pb-20 rounded-xl">
+                <div className="w-1/3 flex items-center justify-center flex-col bg-SYSTEM-white pb-20 rounded-xl">
                     <div>
                         <img src={logo} />
                     </div>
@@ -76,12 +76,12 @@ const SigninPage: React.FC = () => {
                         <label className="p-2">ID</label>
                         <input
                             placeholder="아이디를 입력하세요"
-                            className="border-2 border-light-gray p-2"
+                            className="border-2 border-COMMON-light-gray p-2"
                         />
                         <label className="p-8">Password</label>
                         <input
                             placeholder="비밀번호를 입력하세요"
-                            className="border-2 border-light-gray p-2"
+                            className="border-2 border-COMMON-light-gray p-2"
                         />
                     </div>
                 </div>
@@ -89,7 +89,7 @@ const SigninPage: React.FC = () => {
 
             {/* 하얀색 섹션 */}
             <div
-                className={`w-full h-1/2 bg-white flex flex-col justify-start items-center overflow-hidden transition-all duration-500 ease-in-out ${
+                className={`w-full h-1/2 bg-SYSTEM-white flex flex-col justify-start items-center overflow-hidden transition-all duration-500 ease-in-out ${
                     isOpen
                         ? "transform translate-y-0"
                         : "transform translate-y-3/4"
@@ -97,13 +97,13 @@ const SigninPage: React.FC = () => {
             >
                 <div className="flex w-full">
                     <div className="w-2/5">
-                        <div className="w-full h-4 bg-black"></div>
+                        <div className="w-full h-4 bg-SYSTEM-black"></div>
                     </div>
-                    <div className="w-80 h-40 bg-black rounded-b-full flex flex-col justify-start items-center">
-                        <div className="w-60 h-32 bg-white rounded-b-full"></div>
+                    <div className="w-80 h-40 bg-SYSTEM-black rounded-b-full flex flex-col justify-start items-center">
+                        <div className="w-60 h-32 bg-SYSTEM-white rounded-b-full"></div>
                     </div>
                     <div className="w-2/5">
-                        <div className="w-full h-4 bg-black "></div>
+                        <div className="w-full h-4 bg-SYSTEM-black "></div>
                     </div>
                 </div>
             </div>
