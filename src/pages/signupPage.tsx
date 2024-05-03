@@ -5,8 +5,7 @@ const SignupPage = () => {
         <div className="w-full h-screen flex flex-col overflow-hidden">
             {/* 빨간색 섹션 */}
             <div
-                className={`w-full h-[16.7%] bg-COMMON-red flex flex-col justify-end items-center overflow-hidden
-                }`}
+                className={`w-full h-[16.7%] bg-COMMON-red flex flex-col justify-end items-center overflow-hidden`}
             >
                 <div className="flex w-full">
                     <div className="w-[45%] flex flex-col justify-end items-center">
@@ -66,4 +65,5 @@ const SignupPage = () => {
             </div>
         </div>
     );
+};
 export default SignupPage;
