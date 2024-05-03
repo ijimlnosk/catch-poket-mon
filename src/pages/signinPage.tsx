@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import logo from "../../assets/imgs/logo.png";
+import logo from "../assets/imgs/logo.png";
 import { useNavigate } from "react-router-dom";
 
 /**
@@ -24,6 +24,14 @@ const SigninPage: React.FC = () => {
     };
 
     useEffect(() => {
+        document.body.style.overflow = "hidden";
+
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, []);
+
+    useEffect(() => {
         const ref = transitionRef.current;
         if (ref) {
             const handleTransition = () => {
@@ -40,7 +48,7 @@ const SigninPage: React.FC = () => {
     }, [isOpen]);
 
     return (
-        <div className="w-full h-screen flex flex-col overflow-hiden">
+        <div className="w-full h-screen flex flex-col overflow-hidden">
             {/* 빨간색 섹션 */}
             <div
                 ref={transitionRef}
@@ -79,12 +87,12 @@ const SigninPage: React.FC = () => {
                         <img src={logo} />
                     </div>
                     <div className="flex items-center justify-center flex-col">
-                        <label className="p-2">ID</label>
+                        <label className="pt-8">ID</label>
                         <input
                             placeholder="아이디를 입력하세요"
                             className="border-2 border-COMMON-light-gray p-2"
                         />
-                        <label className="p-8">Password</label>
+                        <label className="pt-8">Password</label>
                         <input
                             placeholder="비밀번호를 입력하세요"
                             className="border-2 border-COMMON-light-gray p-2"
