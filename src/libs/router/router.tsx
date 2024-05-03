@@ -1,10 +1,12 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
-import MainPage from "../../components/main/mainPage";
-import SignupPage from "../../components/signup/signupPage";
-import SigninPage from "../../components/signin/signinPage";
-import MyInfoPage from "../../components/myInfo/myInfoPage";
-import PoketMonDetailPage from "../../components/poketMonDetail/poketMonDetailPage";
+import MainPage from "../../pages/mainPage";
+// import SignupPage from "../../pages/signupPage";
+// import SigninPage from "../../pages/signinPage";
+import MyInfoPage from "../../pages/myInfoPage";
+import PoketMonDetailPage from "../../pages/poketMonDetailPage";
 import AdminRouter from "./adminRouter";
+import SigninPage from "../../pages/signinPage";
+import SignupPage from "../../pages/signupPage";
 
 const ADMIN_ROUTER: RouteObject = {
     element: <AdminRouter />,
