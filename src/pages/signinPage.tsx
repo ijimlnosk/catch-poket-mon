@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import logo from "../assets/imgs/logo.png";
 import { useNavigate } from "react-router-dom";
 
+
 /**
  * signin page
  * author : kimjinsol
@@ -19,6 +20,7 @@ const SigninPage: React.FC = () => {
         setIsOpen(!isOpen);
     };
 
+
     const handleNavSignup = () => {
         navigate("/signup");
     };
@@ -30,7 +32,6 @@ const SigninPage: React.FC = () => {
             document.body.style.overflow = "auto";
         };
     }, []);
-
     useEffect(() => {
         const ref = transitionRef.current;
         if (ref) {
@@ -99,8 +100,6 @@ const SigninPage: React.FC = () => {
                         />
                         <button className="p-4">로그인</button>
                     </div>
-
-                    {/* signupForm */}
 
                     <div className="flex flex-row">
                         <p className="p-4 text-ti text-POKETYPE-rock">

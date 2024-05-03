@@ -22,7 +22,7 @@ const SignupPage = () => {
             </div>
 
             <div className={` h-screen flex items-center justify-center`}>
-                {/* signinForm */}
+                {/* signupForm */}
                 <div className="w-[400px] h-[400px] flex items-center justify-center flex-col rounded-xl">
                     <div>
                         <img src={logo} />
@@ -45,8 +45,6 @@ const SignupPage = () => {
                         />
                         <button className="pt-8">가입하기</button>
                     </div>
-
-                    {/* signupForm */}
                 </div>
             </div>
 
@@ -68,5 +66,4 @@ const SignupPage = () => {
             </div>
         </div>
     );
-};
 export default SignupPage;
