@@ -11,6 +11,10 @@ export default {
             fontSize: {
                 ...FONT_SIZE,
             },
+            backgroundImage: {
+                signupImg:
+                    "url('/src/assets/imgs/signupImg-removebg-preview.png')",
+            },
         },
         fontFamily: {
             DungGeunMo: ["DungGeunMo"],

@@ -4,7 +4,7 @@ import logo from "../../assets/imgs/logo.png";
 /**
  * signin page
  * author : kimjinsol
- * @returns {JSX.Element}
+ * @returns {}
  */
 
 const SigninPage: React.FC = () => {
@@ -67,7 +67,7 @@ const SigninPage: React.FC = () => {
                     showLoginForm ? "opacity-100" : "opacity-0"
                 }`}
             >
-                {/* loginForm */}
+                {/* signinForm */}
                 <div className="w-[400px]  flex items-center justify-center flex-col pb-20 rounded-xl">
                     <div>
                         <img src={logo} />
@@ -85,6 +85,8 @@ const SigninPage: React.FC = () => {
                         />
                         <button className="p-4">로그인</button>
                     </div>
+
+                    {/* signupForm */}
 
                     <div className="flex flex-row">
                         <p className="p-4 text-ti text-POKETYPE-rock">
