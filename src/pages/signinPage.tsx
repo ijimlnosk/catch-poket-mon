@@ -1,22 +1,37 @@
 import React, { useEffect, useRef, useState } from "react";
 import logo from "../assets/imgs/logo.png";
+import { useNavigate } from "react-router-dom";
+
 
 /**
  * signin page
  * author : kimjinsol
- * @returns {JSX.Element}
+ * @returns {}
  */
 
 const SigninPage: React.FC = () => {
     const [isOpen, setIsOpen] = useState<boolean>(true);
     const [showLoginForm, setShowLoginForm] = useState<boolean>(false);
     const transitionRef = useRef<HTMLDivElement>(null);
+    const navigate = useNavigate();
 
     const handleSections = () => {
         setShowLoginForm(false);
         setIsOpen(!isOpen);
     };
 
+
+    const handleNavSignup = () => {
+        navigate("/signup");
+    };
+
+    useEffect(() => {
+        document.body.style.overflow = "hidden";
+
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, []);
     useEffect(() => {
         const ref = transitionRef.current;
         if (ref) {
@@ -34,7 +49,7 @@ const SigninPage: React.FC = () => {
     }, [isOpen]);
 
     return (
-        <div className="w-full h-screen flex flex-col overflow-hiden">
+        <div className="w-full h-screen flex flex-col overflow-hidden">
             {/* 빨간색 섹션 */}
             <div
                 ref={transitionRef}
@@ -67,18 +82,18 @@ const SigninPage: React.FC = () => {
                     showLoginForm ? "opacity-100" : "opacity-0"
                 }`}
             >
-                {/* loginForm */}
+                {/* signinForm */}
                 <div className="w-[400px]  flex items-center justify-center flex-col pb-20 rounded-xl">
                     <div>
                         <img src={logo} />
                     </div>
                     <div className="flex items-center justify-center flex-col">
-                        <label className="p-2">ID</label>
+                        <label className="pt-8">ID</label>
                         <input
                             placeholder="아이디를 입력하세요"
                             className="border-2 border-COMMON-light-gray p-2"
                         />
-                        <label className="p-8">Password</label>
+                        <label className="pt-8">Password</label>
                         <input
                             placeholder="비밀번호를 입력하세요"
                             className="border-2 border-COMMON-light-gray p-2"
@@ -90,7 +105,9 @@ const SigninPage: React.FC = () => {
                         <p className="p-4 text-ti text-POKETYPE-rock">
                             아직도 회원이 아니신가요?
                         </p>
-                        <button className="text-ti">가입하러가기</button>
+                        <button onClick={handleNavSignup} className="text-ti">
+                            가입하러가기
+                        </button>
                     </div>
                 </div>
             </div>
