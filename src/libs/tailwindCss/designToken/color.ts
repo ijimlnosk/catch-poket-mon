@@ -23,4 +23,4 @@ export const COLORS = {
         ground: "#9B897B",
         electric: "#F7C545",
     },
-};
+} as const;

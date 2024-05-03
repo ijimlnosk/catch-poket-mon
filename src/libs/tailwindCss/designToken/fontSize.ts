@@ -5,4 +5,4 @@ export const FONT_SIZE= {
 	md: "15px", // medium
 	sm: "13px", // small
 	ti: "11px", // tiny
-};
+}as const;
