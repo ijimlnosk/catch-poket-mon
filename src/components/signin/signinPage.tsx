@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import logo from "../../assets/imgs/logo.png";
+import { useNavigate } from "react-router-dom";
 
 /**
  * signin page
@@ -11,10 +12,15 @@ const SigninPage: React.FC = () => {
     const [isOpen, setIsOpen] = useState<boolean>(true);
     const [showLoginForm, setShowLoginForm] = useState<boolean>(false);
     const transitionRef = useRef<HTMLDivElement>(null);
+    const navigate = useNavigate();
 
     const handleSections = () => {
         setShowLoginForm(false);
         setIsOpen(!isOpen);
+    };
+
+    const handleNavSignup = () => {
+        navigate("/signup");
     };
 
     useEffect(() => {
@@ -92,7 +98,9 @@ const SigninPage: React.FC = () => {
                         <p className="p-4 text-ti text-POKETYPE-rock">
                             아직도 회원이 아니신가요?
                         </p>
-                        <button className="text-ti">가입하러가기</button>
+                        <button onClick={handleNavSignup} className="text-ti">
+                            가입하러가기
+                        </button>
                     </div>
                 </div>
             </div>
