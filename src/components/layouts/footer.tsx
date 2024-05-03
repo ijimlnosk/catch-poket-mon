@@ -1,3 +1,9 @@
+/**
+ * footer
+ * author : Wendy
+ * @returns {JSX.Element}
+ */
+
 const Footer = () => {
     return (
         <footer className="bg-SYSTEM-white text-SYSTEM-black py-4 text-center">
