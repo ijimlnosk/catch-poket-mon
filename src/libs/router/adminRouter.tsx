@@ -10,7 +10,7 @@ const AdminRouter: React.FC = () => {
 
     useEffect(() => {
         if (!sessionToken) {
-            navigate("/");
+            navigate("/signin");
         } else {
             if (location.pathname === "/signin") {
                 navigate("/");
