@@ -1,7 +1,5 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 import MainPage from "../../pages/mainPage";
-// import SignupPage from "../../pages/signupPage";
-// import SigninPage from "../../pages/signinPage";
 import MyInfoPage from "../../pages/myInfoPage";
 import PoketMonDetailPage from "../../pages/poketMonDetailPage";
 import AdminRouter from "./adminRouter";
