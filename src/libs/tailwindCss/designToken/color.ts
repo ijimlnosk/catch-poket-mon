@@ -5,13 +5,14 @@ export const COLORS = {
         white: "#FBFBFB",
     },
     MAIN: {
+        purple: "#E4DAFF",
         yellow: "#FFF9C0",
         gray: "#D9D9D9",
     },
     COMMON: {
-        red: "#C5312A",//포켓몬볼 색
-        dark_gray: "#807E7E",//네비바 호버시
-        light_gray: "#e0e0e0",//버튼클릭시
+        red: "#C5312A", //포켓몬볼 색
+        dark_gray: "#807E7E", //네비바 호버시
+        light_gray: "#e0e0e0", //버튼클릭시
     },
     POKETYPE: {
         rock: "#A1A1A1",

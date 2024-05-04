@@ -10,15 +10,15 @@ const ADMIN_ROUTER: RouteObject = {
     element: <AdminRouter />,
     children: [
         {
-            path: "",
+            path: "/",
             element: <MainPage />,
         },
         {
-            path: "/myInfo",
+            path: "/myinfo",
             element: <MyInfoPage />,
         },
         {
-            path: "/poketMonDetail",
+            path: "/poketmondetail",
             element: <PoketMonDetailPage />,
         },
     ],
