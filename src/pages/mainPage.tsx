@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 import MainBackgorund from "../components/main/mainBackground";
-import Level1 from "../components/main/level1";
-import Level2 from "../components/main/level2";
+import StartPoke from "../components/main/startPoke";
+import EncounterPoke from "../components/main/encounterPoke";
 
-type StepType = "level-1" | "level-2" | "level-3" | "level-3";
+type StepType = "level-1" | "level-2";
 
 const MainPage = () => {
     const [step, setStep] = useState<StepType>("level-1");
@@ -14,23 +14,17 @@ const MainPage = () => {
     const onGameStart = () => {
         setStep("level-2");
     };
-    const onPokeConfirm = () => {
-        setStep("level-3");
-    };
     switch (step) {
         case "level-1":
             return (
                 <MainBackgorund>
-                    <Level1 onGameStart={onGameStart} />
+                    <StartPoke onGameStart={onGameStart} />
                 </MainBackgorund>
             );
         case "level-2":
             return (
                 <MainBackgorund>
-                    <Level2
-                        onPokeConfirm={onPokeConfirm}
-                        returnLevel1={returnLevel1}
-                    />
+                    <EncounterPoke returnLevel1={returnLevel1} />
                 </MainBackgorund>
             );
     }

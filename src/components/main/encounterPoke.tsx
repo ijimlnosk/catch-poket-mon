@@ -6,14 +6,13 @@
 
 import { useState } from "react";
 import examplePoketMon from "../../assets/imgs/examplePoke.png";
-import Level1 from "./level1";
+import Level1 from "./startPoke";
 
 type PokeCon = {
-    onPokeConfirm: () => void;
     returnLevel1: VoidFunction;
 };
 
-const Level2 = ({ returnLevel1 }: PokeCon) => {
+const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
     const [pokeConfirm] = useState<boolean>(false);
 
     const onRunaway = () => {
@@ -68,4 +67,4 @@ const Level2 = ({ returnLevel1 }: PokeCon) => {
         </>
     );
 };
-export default Level2;
+export default EncounterPoke;

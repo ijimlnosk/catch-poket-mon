@@ -12,7 +12,7 @@ import { RootState } from "../../libs/redux/store";
 type GameStartProps = {
     onGameStart: () => void;
 };
-const Level1 = ({ onGameStart }: GameStartProps) => {
+const StartPoke = ({ onGameStart }: GameStartProps) => {
     const dispatch = useDispatch();
     const gameStart = useSelector(
         (state: RootState) => state.gameStart.gameStart
@@ -54,4 +54,4 @@ const Level1 = ({ onGameStart }: GameStartProps) => {
         </>
     );
 };
-export default Level1;
+export default StartPoke;
