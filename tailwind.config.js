@@ -11,6 +11,15 @@ export default {
             fontSize: {
                 ...FONT_SIZE,
             },
+            keyframes: {
+                roll: {
+                    "0%": { transform: "rotate(0deg)" },
+                    "100%": { transform: "rotate(360deg)" },
+                },
+            },
+            animation: {
+                roll: "roll 2s linear infinite",
+            },
         },
         fontFamily: {
             DungGeunMo: ["DungGeunMo"],
