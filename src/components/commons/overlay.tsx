@@ -27,13 +27,6 @@ const Overlay: React.FC<OverlayProps> = ({
 }) => {
     if (!isOpen) return null;
 
-    const containerCss = clsx(
-        "fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50",
-        {
-            "cursor-pointer": onClose,
-        }
-    );
-
     const contentCss = clsx(
         "bg-white p-4 rounded-lg shadow-lg w-auto mx-auto my-auto",
         widthCss,
@@ -42,7 +35,7 @@ const Overlay: React.FC<OverlayProps> = ({
 
     return (
         <div
-            className={containerCss}
+            className="fixed inset-0 bg-SYSTEM-black bg-opacity-50 flex justify-center items-center z-50"
             onClick={onClose}
             aria-modal="true"
             role="dialog"
