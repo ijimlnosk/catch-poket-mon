@@ -13,8 +13,8 @@ export default {
                 ...FONT_SIZE,
             },
 
-            backgroundImage:{
-                'main-background' : "url('/src/assets/imgs/mainBackground.png')"
+            backgroundImage: {
+                "main-background": "url('/src/assets/imgs/mainBackground.png')",
             },
 
             keyframes: {
@@ -25,12 +25,11 @@ export default {
             },
             animation: {
                 roll: "roll 2s linear infinite",
-
             },
-        fontFamily: {
-            DungGeunMo: ["DungGeunMo"],
+            fontFamily: {
+                DungGeunMo: ["DungGeunMo"],
+            },
         },
-
+        plugins: [],
     },
-    plugins: [],
 };
