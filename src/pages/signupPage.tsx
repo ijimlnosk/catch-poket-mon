@@ -1,6 +1,6 @@
 import logo from "../assets/imgs/logo.png";
 
-const SignupPage = () => {
+const SignupPage: React.FC = () => {
     return (
         <div className="w-full h-screen flex flex-col overflow-hidden">
             {/* 빨간색 섹션 */}
