@@ -3,7 +3,6 @@ import { ColorRoot } from "../../types/pokeTypes/pokeColorType";
 import { PokeNamedRoot } from "../../types/pokeTypes/pokeNamedType";
 import { PokemonRoot } from "../../types/pokeTypes/pokemonType";
 import { SpeciesRoot } from "../../types/pokeTypes/speciesType";
-import { SpritesRoot } from "../../types/pokeTypes/spritesType";
 
 import { pocketmonInstance } from "./axiosInstance";
 
@@ -17,13 +16,6 @@ export const getAllPocketmon = async () => {
 export const getAbilityInfo = async (poketId: number) => {
     const response = await pocketmonInstance.get<AbilityRoot>(
         `/ability/${poketId}`
-    );
-    return response.data;
-};
-
-export const getPokemonSprites = async (poketId: number) => {
-    const response = await pocketmonInstance.get<SpritesRoot>(
-        `/pokemon/${poketId}`
     );
     return response.data;
 };
