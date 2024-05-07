@@ -1,8 +1,8 @@
-import ball from "../assets/imgs/ball.png";
+import ball from "../../assets/imgs/ball.png";
 
 const LoadingPage: React.FC = () => {
     return (
-        <div className="w-full h-screen flex flex-col justify-center items-center space-y-8">
+        <div className="w-full h-screen flex flex-col justify-center items-center space-y-8 bg-SYSTEM-white">
             <div>
                 <p className="text-lg font-semibold">로딩중...</p>
             </div>
