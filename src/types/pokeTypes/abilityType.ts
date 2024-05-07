@@ -1,4 +1,4 @@
-export interface PokeRoot {
+export interface AbilityRoot {
     id: number;
     name: string;
     is_main_series: boolean;
