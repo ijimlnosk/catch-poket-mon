@@ -27,8 +27,9 @@ export const ButtonVariants = cva(
                 full: "rounded-full",
             },
             size: {
-                tiny: "text-sm ",
-                small: "text-sm  px-24",
+                xtiny: "text-sm",
+                tiny: "text-sm px-24",
+                small: "text-sm py-2 px-5 ", //로그인버튼
                 medium: "text-md py-4 px-6",
                 large: "text-bg py-3 px-8",
                 xlarge: "text-lg py-4 px-10",
