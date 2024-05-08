@@ -5,7 +5,7 @@
  */
 
 import { useState } from "react";
-import { usePokeData } from "../../hook/usePokeData";
+import { useRandomPokeData } from "../../hook/useRandomPokeData";
 import LoadingPage from "../commons/loadingPage";
 import { getPokemonSpecies, getPokemon } from "../../libs/axios/pokeAPI";
 import { useQueryClient } from "react-query";
@@ -18,7 +18,7 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
     const [pokeConfirm] = useState<boolean>(false);
     const queryClient = useQueryClient();
 
-    const { data, error, isLoading } = usePokeData({
+    const { data, error, isLoading } = useRandomPokeData({
         getPokemonSpecies,
         getPokemon,
     });

@@ -10,7 +10,7 @@ interface PokeApiProps {
     getPokemon?: (pokeId: number) => Promise<PokemonRoot>;
 }
 
-export const usePokeData = ({
+export const useRandomPokeData = ({
     getAbilityInfo,
     getPokemonSpecies,
     getPokemon,
