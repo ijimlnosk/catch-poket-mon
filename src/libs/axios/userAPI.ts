@@ -10,21 +10,14 @@ export interface UserRuest {
 }
 
 //회원가입
-export const postSignup = async({userId, password,nickname} :UserRuest) =>{
-    const response = await userDataInstance.post("/user/sign-up", {
-        userId,
-        password,
-        nickname
-    })
+export const postSignup = async(user :UserRuest) =>{
+    const response = await userDataInstance.post("/user/sign-up", user)
     return response
 }
 
 //로그인
-export const postSignin = async({userId,password}:UserRuest)=> {
-const response = await userDataInstance.post("/user/sign-in",{
-    userId,
-    password,
-})
+export const postSignin = async(user:UserRuest)=> {
+const response = await userDataInstance.post("/user/sign-in",user)
 return response
 }
 
@@ -49,19 +42,16 @@ interface profile {
 image?: string;
 nickname?:string
 }
+
 //프로필이미지 수정
-export const patchUpdateProfileUrl = async({image}:profile)=>{
-    const response = await userDataInstance.patch("/user/update/profileUrl",{
-        image
-    })
+export const patchUpdateProfileUrl = async(image:profile)=>{
+    const response = await userDataInstance.patch("/user/update/profileUrl",image)
     return response
 
 }
 
 //프로필 닉네임 수정
-export const patchUpdateInfo = async({nickname}:profile)=>{
-    const response =await userDataInstance.patch("/user/update.info",{
-        nickname
-    })
+export const patchUpdateInfo = async(nickname:profile)=>{
+    const response =await userDataInstance.patch("/user/update.info",nickname)
     return response
 }
