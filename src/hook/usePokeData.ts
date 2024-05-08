@@ -15,25 +15,40 @@ export const usePokeData = ({
     getPokemonSpecies,
     getPokemon,
 }: PokeApiProps) => {
-    return useQuery("pokeData", async () => {
-        const response = await getAllPocketmon();
-        const details = await Promise.all(
-            response.results.map(async (poke) => {
-                const match = poke.url.match(/\/pokemon\/(\d+)\//);
-                if (match) {
-                    const pokeId = parseInt(match[1], 10);
-                    const [info, species, pokemon] = await Promise.all([
-                        getAbilityInfo?.(pokeId) ?? null,
-                        getPokemonSpecies?.(pokeId) ?? null,
-                        getPokemon?.(pokeId) ?? null,
-                    ]);
+    return useQuery(
+        "pokeData",
+        async () => {
+            const response = await getAllPocketmon();
+            const details = await Promise.all(
+                response.results.map(async (poke) => {
+                    const match = poke.url.match(/\/pokemon\/(\d+)\//);
+                    if (match) {
+                        const pokeId = parseInt(match[1], 10);
+                        const [info, species, pokemon] = await Promise.all([
+                            getAbilityInfo?.(pokeId) ?? null,
+                            getPokemonSpecies?.(pokeId) ?? null,
+                            getPokemon?.(pokeId) ?? null,
+                        ]);
 
-                    if (!info && !species && !pokemon) return null;
-                    return { info, species, pokemon };
-                }
-                return null;
-            })
-        );
-        return details.filter((details) => details !== null);
-    });
+                        if (!info && !species && !pokemon) return null;
+                        return { info, species, pokemon };
+                    }
+                    return null;
+                })
+            );
+            const nonNullDetails = details.filter(
+                (details) => details !== null
+            );
+
+            const randomIndex = Math.floor(
+                Math.random() * nonNullDetails.length
+            );
+            return nonNullDetails[randomIndex];
+        },
+        {
+            refetchOnWindowFocus: false,
+            staleTime: Infinity,
+            cacheTime: 1000 * 60 * 5,
+        }
+    );
 };

@@ -3,7 +3,7 @@ export interface SpeciesRoot {
     // name: string;
     // order: number;
     // gender_rate: number;
-    // capture_rate: number;
+    capture_rate: number;
     // base_happiness: number;
     // is_baby: boolean;
     // is_legendary: boolean;
