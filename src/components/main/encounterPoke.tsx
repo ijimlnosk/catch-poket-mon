@@ -1,18 +1,19 @@
+import { useState } from "react";
+import { useRandomPokeData } from "../../hook/useRandomPokeData";
+import LoadingPage from "../commons/loadingPage";
+import { getPokemonSpecies, getPokemon } from "../../libs/axios/pokeAPI";
+import { useMutation, useQueryClient } from "react-query";
+import { postData } from "../../libs/axios/dataAPI";
+
+type PokeCon = {
+    returnLevel1: VoidFunction;
+};
+
 /**
  * mainpage 에서 맨처음 컴포넌트
  * author : Wendy, Gang
  * @returns {JSX.Element}
  */
-
-import { useState } from "react";
-import { useRandomPokeData } from "../../hook/useRandomPokeData";
-import LoadingPage from "../commons/loadingPage";
-import { getPokemonSpecies, getPokemon } from "../../libs/axios/pokeAPI";
-import { useQueryClient } from "react-query";
-
-type PokeCon = {
-    returnLevel1: VoidFunction;
-};
 
 const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
     const [pokeConfirm] = useState<boolean>(false);
@@ -23,6 +24,7 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
         getPokemon,
     });
 
+    // 포획률 계산
     const captureRate = data?.species?.capture_rate;
     const capturePercent = captureRate
         ? ((captureRate / 255) * 100).toFixed(2)
@@ -30,10 +32,20 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
 
     console.log(data);
 
+    const { mutate } = useMutation(postData, {
+        onSuccess: () => {
+            handleNewSession();
+        },
+        onError: (error: unknown) => {
+            console.error("포획 데이터 저장 실패", error);
+        },
+    });
+
     if (isLoading) return <LoadingPage />;
     if (error) return <div>error</div>;
 
     const handleNewSession = () => {
+        // 페이지 강제 새로고침
         queryClient.invalidateQueries("pokeData");
         returnLevel1();
     };
@@ -43,8 +55,28 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
         handleNewSession();
     };
     const onCatchPoketMon = () => {
-        alert("포획성공");
-        handleNewSession();
+        const isSuccess = captureRate && Math.random() / 255;
+        if (isSuccess) {
+            const typesName = data?.pokemon?.types.map(
+                (type) => type.type.name
+            );
+            if (
+                data?.pokemon?.id &&
+                typesName &&
+                data?.species?.names[2].name
+            ) {
+                const postPokeData = {
+                    poke_id: data?.pokemon?.id,
+                    type: typesName,
+                    name: data?.species?.names[2].name,
+                    url: data?.pokemon?.sprites?.front_default,
+                    background: "",
+                };
+                mutate(postPokeData);
+            }
+        } else {
+            alert("포획 실패!");
+        }
     };
     return (
         <>
