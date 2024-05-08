@@ -1,12 +1,10 @@
-
 import { profile } from "console";
 import { userDataInstance } from "./axiosInstance";
 
-
 export interface UserRuest {
-    userId:string;
-    password:string;
-    nickname?:string;
+    userId: string;
+    password: string;
+    nickname?: string;
 }
 
 //회원가입
@@ -22,25 +20,25 @@ return response
 }
 
 //로그아웃
-export const postSignout = async()=>{
-    const response=await userDataInstance.post("/user/sign-out")
-    return response
-}
+export const postSignout = async () => {
+    const response = await userDataInstance.post("/user/sign-out");
+    return response;
+};
 
 //리프레쉬토큰
-export const getRefresh = async()=> {
-    const response =await userDataInstance.get("/user/refresh")
-    if(response.status === 200 ){
-        return response.data.token
+export const getRefresh = async () => {
+    const response = await userDataInstance.get("/user/refresh");
+    if (response.status === 200) {
+        return response.data.token;
     } else {
-        console.error("접근 권한이 없습니다")
+        console.error("접근 권한이 없습니다");
     }
-}
+};
 
 //회원정보 수정
 interface profile {
-image?: string;
-nickname?:string
+    image?: string;
+    nickname?: string;
 }
 
 //프로필이미지 수정

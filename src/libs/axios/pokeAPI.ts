@@ -6,6 +6,11 @@ import { SpeciesRoot } from "../../types/pokeTypes/speciesType";
 
 import { pocketmonInstance } from "./axiosInstance";
 
+interface TypeRoot {
+    id: number;
+    name: string;
+}
+
 export const getAllPocketmon = async () => {
     const response = await pocketmonInstance.get<PokeNamedRoot>(
         "/pokemon/?limit=250&offset=20"
@@ -38,5 +43,10 @@ export const getPokemon = async (pokeId: number) => {
     const response = await pocketmonInstance.get<PokemonRoot>(
         `pokemon/${pokeId}`
     );
+    return response.data;
+};
+
+export const getPokeType = async (pokeId: number) => {
+    const response = await pocketmonInstance.get<TypeRoot>(`type/${pokeId}`);
     return response.data;
 };
