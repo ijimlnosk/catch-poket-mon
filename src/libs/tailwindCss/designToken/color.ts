@@ -1,3 +1,5 @@
+
+
 export const COLORS = {
     SYSTEM: {
         red: "#D93E30",
@@ -17,11 +19,24 @@ export const COLORS = {
     POKETYPE: {
         rock: "#A1A1A1",
         grass: "#70A83B",
-        ice: "#A2CFF0",
+        ice: "#96D9D6",
         fire: "#F76545",
-        normal: "#76AADB",
+        normal: "#A8A77A",
         poison: "#A974BC",
         ground: "#9B897B",
         electric: "#F7C545",
+        flying:"#A2CFF0",
+        water:"#6390F0",
+        steel:"#B7B7CE",
+        ghost:"#735797",
+        bug:"#A6B91A",
+        dragon:"#6F35FC",
+        dark:"#705746",
+        fairy:"#D685AD",
+        psychic:"#F95587",
+        fighting:"#C22E28",
+        shadow:"#604E85",
+        unknown:"#6A6A6A"
+
     },
 } as const;
