@@ -1,57 +1,60 @@
-
 import { profile } from "console";
 import { userDataInstance } from "./axiosInstance";
 
-
 export interface UserRuest {
-    userId:string;
-    password:string;
-    nickname?:string;
+    userId: string;
+    password: string;
+    nickname?: string;
 }
 
 //회원가입
-export const postSignup = async(user :UserRuest) =>{
-    const response = await userDataInstance.post("/user/sign-up", user)
-    return response
-}
+export const postSignup = async (user: UserRuest) => {
+    const response = await userDataInstance.post("/user/sign-up", user);
+    return response;
+};
 
 //로그인
-export const postSignin = async(user:UserRuest)=> {
-const response = await userDataInstance.post("/user/sign-in",user)
-return response
-}
+export const postSignin = async (user: UserRuest) => {
+    const response = await userDataInstance.post("/user/sign-in", user);
+    return response;
+};
 
 //로그아웃
-export const postSignout = async()=>{
-    const response=await userDataInstance.post("/user/sign-out")
-    return response
-}
+export const postSignout = async () => {
+    const response = await userDataInstance.post("/user/sign-out");
+    return response;
+};
 
 //리프레쉬토큰
-export const getRefresh = async()=> {
-    const response =await userDataInstance.get("/user/refresh")
-    if(response.status === 200 ){
-        return response.data.token
+export const getRefresh = async () => {
+    const response = await userDataInstance.get("/user/refresh");
+    if (response.status === 200) {
+        return response.data.token;
     } else {
-        console.error("접근 권한이 없습니다")
+        console.error("접근 권한이 없습니다");
     }
-}
+};
 
 //회원정보 수정
 interface profile {
-image?: string;
-nickname?:string
+    image?: string;
+    nickname?: string;
 }
 
 //프로필이미지 수정
-export const patchUpdateProfileUrl = async(image:profile)=>{
-    const response = await userDataInstance.patch("/user/update/profileUrl",image)
-    return response
-
-}
+export const patchUpdateProfileUrl = async (image: profile) => {
+    const response = await userDataInstance.patch(
+        "/user/update/profileUrl",
+        image
+    );
+    return response;
+};
 
 //프로필 닉네임 수정
-export const patchUpdateInfo = async(nickname:profile)=>{
-    const response =await userDataInstance.patch("/user/update.info",nickname)
-    return response
-}
+export const patchUpdateInfo = async (nickname: profile) => {
+    const response = await userDataInstance.patch(
+        "/user/update.info",
+        nickname
+    );
+    return response;
+};

@@ -16,7 +16,7 @@ export interface PokemonRoot {
     sprites: Sprites;
     // cries: Cries;
     // stats: Stat[];
-    // types: Type[];
+    types: Type[];
     // past_types: PastType[];
 }
 
@@ -354,15 +354,15 @@ export interface Showdown {
 //     url: string;
 // }
 
-// export interface Type {
-//     slot: number;
-//     type: Type2;
-// }
+export interface Type {
+    slot: number;
+    type: Type2;
+}
 
-// export interface Type2 {
-//     name: string;
-//     url: string;
-// }
+export interface Type2 {
+    name: string;
+    url: string;
+}
 
 // export interface PastType {
 //     generation: Generation;
