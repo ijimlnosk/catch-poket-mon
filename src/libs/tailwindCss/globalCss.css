@@ -3,5 +3,13 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'DungGeunMo';
-    src: url('../../assets/font/DungGeunMo.ttf')}
+    font-family: "DungGeunMo";
+    src: url("../../assets/font/DungGeunMo.ttf");
+}
+
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-use-select: none;
+    user-select: none;
+}
