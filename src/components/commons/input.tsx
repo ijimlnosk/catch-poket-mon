@@ -3,17 +3,17 @@ import { Path, RegisterOptions, UseFormRegister } from "react-hook-form";
 
 // 폼데이터 인터페이스 정의
 interface FormValues {
-    id: string;
+    userId: string;
     password: string;
 }
 
-type InputProps<TFieldValies extends FormValues> = {
-    name: Path<TFieldValies>; // name은 path 유틸리티 타입을 사용하여 경로 문자열을 타입화
+type InputProps<TFieldValues extends FormValues> = {
+    name: Path<TFieldValues>; // name은 path 유틸리티 타입을 사용하여 경로 문자열을 타입화
     type?: "text" | "password"; // 입력 필드 타입, 기본값 text
     placeholder?: string;
     validation?: RegisterOptions;
     className?: string;
-    register: UseFormRegister<TFieldValies>;
+    register: UseFormRegister<TFieldValues>;
 };
 
 /**
@@ -21,13 +21,13 @@ type InputProps<TFieldValies extends FormValues> = {
  * author: Gang
  */
 
-const Input = <TFieldValies extends FormValues>({
+const Input = <TFieldValues extends FormValues>({
     name,
     type = "text",
     placeholder,
     className,
     register,
-}: InputProps<TFieldValies>): JSX.Element => {
+}: InputProps<TFieldValues>): JSX.Element => {
     return (
         <input
             {...register(name)}
