@@ -24,13 +24,15 @@ const defaultPokeData: getPokeData = {
 export const postData = async (postPokeData: PokeRequest) => {
     const postDataResponse = await userDataInstance.post(
         "/data/poke",
-        postPokeData,
         {
-            params: {
-                pair: "2",
-                auth: true,
-                apiKey: "mobi3rd1234",
-            },
+            pokeId: postPokeData.poke_id,
+            type: postPokeData.type,
+            name: postPokeData.name,
+            url: postPokeData.url,
+            background: postPokeData.background,
+        },
+        {
+            params: defaultPokeData,
         }
     );
     return postDataResponse.data;
@@ -40,7 +42,7 @@ export const postData = async (postPokeData: PokeRequest) => {
 export const getData = async () => {
     const getDataResponse = await userDataInstance.get("/data/poke", {
         params: {
-            defaultPokeData,
+            ...defaultPokeData,
         },
     });
 
@@ -53,7 +55,7 @@ export const deleteData = async (id: number) => {
         `/data/poke/${id}`,
         {
             params: {
-                defaultPokeData,
+                ...defaultPokeData,
             },
         }
     );
