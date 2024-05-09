@@ -36,7 +36,7 @@ const Overlay: React.FC<OverlayProps> = ({
 
     return (
         <div
-            className="fixed inset-0 bg-SYSTEM-black bg-opacity-50 flex justify-center items-center z-50"
+            className="fixed inset-0 flex justify-center items-center z-50"
             onClick={onClose}
             aria-modal="true"
             role="dialog"
@@ -46,9 +46,7 @@ const Overlay: React.FC<OverlayProps> = ({
                 <button
                     onClick={onClose}
                     className="absolute top-2 right-2 text-lg font-bold"
-                >
-                    X
-                </button>
+                ></button>
             </div>
         </div>
     );
