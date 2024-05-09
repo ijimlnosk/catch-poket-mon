@@ -1,4 +1,4 @@
-import logo from "../assets/imgs/logo.png";
+import SignupForm from "../components/signup/signupForm";
 
 const SignupPage: React.FC = () => {
     return (
@@ -21,30 +21,7 @@ const SignupPage: React.FC = () => {
             </div>
 
             <div className={` h-screen flex items-center justify-center`}>
-                {/* signupForm */}
-                <div className="w-[400px] h-[400px] flex items-center justify-center flex-col rounded-xl">
-                    <div>
-                        <img src={logo} />
-                    </div>
-                    <div className="flex items-center justify-center flex-col">
-                        <label className="pt-6">ID</label>
-                        <input
-                            placeholder="아이디를 입력하세요"
-                            className="border-2 border-COMMON-light-gray p-2"
-                        />
-                        <label className="pt-6">Password</label>
-                        <input
-                            placeholder="비밀번호를 입력하세요"
-                            className="border-2 border-COMMON-light-gray p-2"
-                        />
-                        <label className="pt-6">닉네임</label>
-                        <input
-                            placeholder="닉네임을 입력하세요"
-                            className="border-2 border-COMMON-light-gray p-2"
-                        />
-                        <button className="pt-8">가입하기</button>
-                    </div>
-                </div>
+                <SignupForm />
             </div>
 
             {/* 하얀색 섹션 */}
