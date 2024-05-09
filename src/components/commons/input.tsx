@@ -1,10 +1,17 @@
 import clsx from "clsx";
-import { Path, RegisterOptions, UseFormRegister } from "react-hook-form";
+import { ReactNode } from "react";
+import {
+    FieldErrors,
+    Path,
+    RegisterOptions,
+    UseFormRegister,
+} from "react-hook-form";
 
 // 폼데이터 인터페이스 정의
 interface FormValues {
     userId: string;
     password: string;
+    nickname?: string;
 }
 
 type InputProps<TFieldValues extends FormValues> = {
@@ -14,6 +21,7 @@ type InputProps<TFieldValues extends FormValues> = {
     validation?: RegisterOptions;
     className?: string;
     register: UseFormRegister<TFieldValues>;
+    errors?: FieldErrors<TFieldValues>;
 };
 
 /**
@@ -27,14 +35,26 @@ const Input = <TFieldValues extends FormValues>({
     placeholder,
     className,
     register,
+    errors,
 }: InputProps<TFieldValues>): JSX.Element => {
     return (
-        <input
-            {...register(name)}
-            type={type}
-            placeholder={placeholder}
-            className={clsx("border-2 p-2 rounded-md shadow-sm ", className)}
-        />
+        <div className="input-wrapper relative">
+            <input
+                {...register(name)}
+                type={type}
+                placeholder={placeholder}
+                className={clsx(
+                    "border-2 p-2 rounded-md shadow-sm ",
+                    className
+                )}
+            />
+            {typeof errors !== "undefined" &&
+                typeof errors[name] !== "undefined" && (
+                    <div className="text-SYSTEM-red text-ti text-center">
+                        {errors[name]?.message as ReactNode}
+                    </div>
+                )}
+        </div>
     );
 };
 
