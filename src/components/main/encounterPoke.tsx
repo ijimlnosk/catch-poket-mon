@@ -6,24 +6,26 @@ import { useMutation, useQueryClient } from "react-query";
 import { postData } from "../../libs/axios/dataAPI";
 import Overlay from "../commons/overlay";
 import Modal from "../commons/modal";
-import { useNavigate } from "react-router-dom";
+import ResultOverlay from "./resultOverlay";
 
 type PokeCon = {
     returnLevel1: VoidFunction;
 };
 
 /**
- * mainpage 에서 맨처음 컴포넌트
  * author : Wendy, Gang
+ * mainpage 에서 맨처음 컴포넌트
+ * unknown 이미지에서 확인하기 버튼 클릭 시 랜덤한 포켓몬 등장
+ * 포획하기 성공 시 postData에 저장되면서 모달창 등장
+ * 포획하기 실패 시 확인 창 등장, 클릭 시 다시 unknown 이미지 컴포넌트 보여줌
  * @returns {JSX.Element}
  */
 
 const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
     const [pokeConfirm] = useState<boolean>(false);
     const queryClient = useQueryClient();
-    const [catchSuccess, setCatchSuccess] = useState<boolean>(false);
-    const navigate = useNavigate();
-
+    const [catchResult, setCatchResult] = useState<boolean | null>(null);
+    const [runAway, setRunAway] = useState<boolean>(false);
     const { data, error, isLoading } = useRandomPokeData({
         getPokemonSpecies,
         getPokemon,
@@ -34,8 +36,6 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
     const capturePercent = captureRate
         ? ((captureRate / 255) * 100).toFixed(2)
         : null;
-
-    console.log(data);
 
     const { mutate } = useMutation(postData, {
         onSuccess: () => {},
@@ -49,14 +49,24 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
     const handleNewSession = () => {
         // 페이지 강제 새로고침
         queryClient.invalidateQueries("pokeData");
-        setCatchSuccess(false);
+        setCatchResult(null);
         returnLevel1();
     };
 
-    const onRunaway = () => {
-        alert("무사히 도망쳤다..!");
-        handleNewSession();
+    // 포획 실패 시
+    const catchFail = () => {
+        setCatchResult(null);
+        returnLevel1();
+        queryClient.invalidateQueries("pokeData");
     };
+
+    // 도망가기
+    const handleRunAway = () => {
+        setRunAway(false);
+        returnLevel1();
+        queryClient.invalidateQueries("pokeData");
+    };
+
     // 포획 버튼 클릭 이벤트
     const onCatchPoketMon = () => {
         const isSuccess = captureRate && Math.random() < captureRate / 255;
@@ -76,27 +86,33 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
                     url: data?.pokemon?.sprites?.front_default,
                     background: data?.species?.color.name,
                 };
-                setCatchSuccess(true);
+                setCatchResult(true);
                 mutate(postPokeData);
             }
         } else {
-            alert("포획 실패!");
-            handleNewSession();
+            setCatchResult(false);
         }
     };
     return (
         <>
-            {catchSuccess && (
+            {catchResult !== null && (
+                <ResultOverlay
+                    result={catchResult}
+                    onClose={() => catchFail()}
+                    onNavigate={handleNewSession}
+                />
+            )}
+            {runAway && (
                 <Overlay
-                    isOpen={catchSuccess}
-                    onClose={() => setCatchSuccess(false)}
+                    isOpen={runAway}
+                    onClose={() => {
+                        setRunAway(false);
+                    }}
                 >
                     <Modal
-                        title="포획 성공! 확인하러가기"
-                        buttonText="다시하기"
-                        onClick={() => handleNewSession()}
-                        secondButtonText="가기"
-                        onSecondClick={() => navigate("/myinfo")}
+                        title="무사히 도망쳤다!"
+                        buttonText="확인"
+                        onClick={() => handleRunAway()}
                     />
                 </Overlay>
             )}
@@ -135,7 +151,7 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
                             </button>
                             <button
                                 className="w-[150px] h-[60px] bg-MAIN-gray"
-                                onClick={onRunaway}
+                                onClick={() => setRunAway(true)}
                             >
                                 도망가기
                             </button>
