@@ -14,7 +14,7 @@ export interface SpeciesRoot {
     // growth_rate: GrowthRate;
     // pokedex_numbers: PokedexNumber[];
     // egg_groups: EggGroup[];
-    // color: Color;
+    color: Color;
     // shape: Shape;
     // evolves_from_species: EvolvesFromSpecies;
     // evolution_chain: EvolutionChain;
@@ -47,10 +47,10 @@ export interface SpeciesRoot {
 //     url: string;
 // }
 
-// export interface Color {
-//     name: string;
-//     url: string;
-// }
+export interface Color {
+    name: string;
+    // url: string;
+}
 
 // export interface Shape {
 //     name: string;
