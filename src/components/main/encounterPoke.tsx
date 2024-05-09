@@ -4,6 +4,9 @@ import LoadingPage from "../commons/loadingPage";
 import { getPokemonSpecies, getPokemon } from "../../libs/axios/pokeAPI";
 import { useMutation, useQueryClient } from "react-query";
 import { postData } from "../../libs/axios/dataAPI";
+import Overlay from "../commons/overlay";
+import Modal from "../commons/modal";
+import { useNavigate } from "react-router-dom";
 
 type PokeCon = {
     returnLevel1: VoidFunction;
@@ -18,6 +21,8 @@ type PokeCon = {
 const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
     const [pokeConfirm] = useState<boolean>(false);
     const queryClient = useQueryClient();
+    const [catchSuccess, setCatchSuccess] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const { data, error, isLoading } = useRandomPokeData({
         getPokemonSpecies,
@@ -33,20 +38,18 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
     console.log(data);
 
     const { mutate } = useMutation(postData, {
-        onSuccess: () => {
-            handleNewSession();
-        },
+        onSuccess: () => {},
         onError: (error: unknown) => {
             console.error("포획 데이터 저장 실패", error);
         },
     });
-
     if (isLoading) return <LoadingPage />;
     if (error) return <div>error</div>;
 
     const handleNewSession = () => {
         // 페이지 강제 새로고침
         queryClient.invalidateQueries("pokeData");
+        setCatchSuccess(false);
         returnLevel1();
     };
 
@@ -54,8 +57,9 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
         alert("무사히 도망쳤다..!");
         handleNewSession();
     };
+    // 포획 버튼 클릭 이벤트
     const onCatchPoketMon = () => {
-        const isSuccess = captureRate && Math.random() / 255;
+        const isSuccess = captureRate && Math.random() < captureRate / 255;
         if (isSuccess) {
             const typesName = data?.pokemon?.types.map(
                 (type) => type.type.name
@@ -70,16 +74,32 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
                     type: typesName,
                     name: data?.species?.names[2].name,
                     url: data?.pokemon?.sprites?.front_default,
-                    background: "",
+                    background: data?.species?.color.name,
                 };
+                setCatchSuccess(true);
                 mutate(postPokeData);
             }
         } else {
             alert("포획 실패!");
+            handleNewSession();
         }
     };
     return (
         <>
+            {catchSuccess && (
+                <Overlay
+                    isOpen={catchSuccess}
+                    onClose={() => setCatchSuccess(false)}
+                >
+                    <Modal
+                        title="포획 성공! 확인하러가기"
+                        buttonText="다시하기"
+                        onClick={() => handleNewSession()}
+                        secondButtonText="가기"
+                        onSecondClick={() => navigate("/myinfo")}
+                    />
+                </Overlay>
+            )}
             <div className="flex flex-col">
                 {!pokeConfirm && (
                     <div className="absolutes">
