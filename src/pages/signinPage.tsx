@@ -1,7 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import logo from "../assets/imgs/logo.png";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { Schema } from "../constants/schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useSigninMutation } from "../hook/useLogin";
+import Input from "../components/commons/input";
+import CustomButton from "../components/commons/button";
 
+interface FormValues {
+    userId: string;
+    password: string;
+}
 
 /**
  * signin page
@@ -14,12 +24,19 @@ const SigninPage: React.FC = () => {
     const [showLoginForm, setShowLoginForm] = useState<boolean>(false);
     const transitionRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
+    const mutation = useSigninMutation();
 
+    const { register, handleSubmit } = useForm<FormValues>({
+        resolver: zodResolver(Schema),
+    });
+
+    const onSubmit = (data: FormValues) => {
+        mutation.mutate(data);
+    };
     const handleSections = () => {
         setShowLoginForm(false);
         setIsOpen(!isOpen);
     };
-
 
     const handleNavSignup = () => {
         navigate("/signup");
@@ -27,7 +44,6 @@ const SigninPage: React.FC = () => {
 
     useEffect(() => {
         document.body.style.overflow = "hidden";
-
         return () => {
             document.body.style.overflow = "auto";
         };
@@ -41,7 +57,6 @@ const SigninPage: React.FC = () => {
                 }
             };
             ref.addEventListener("transitionend", handleTransition);
-
             return () => {
                 ref.removeEventListener("transitionend", handleTransition);
             };
@@ -87,19 +102,35 @@ const SigninPage: React.FC = () => {
                     <div>
                         <img src={logo} />
                     </div>
-                    <div className="flex items-center justify-center flex-col">
-                        <label className="pt-8">ID</label>
-                        <input
-                            placeholder="아이디를 입력하세요"
-                            className="border-2 border-COMMON-light-gray p-2"
-                        />
-                        <label className="pt-8">Password</label>
-                        <input
-                            placeholder="비밀번호를 입력하세요"
-                            className="border-2 border-COMMON-light-gray p-2"
-                        />
-                        <button className="p-4">로그인</button>
-                    </div>
+
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <div className="flex items-center justify-center flex-col">
+                            <label className="pt-7">ID</label>
+                            <Input
+                                name="userId"
+                                placeholder="아이디를 입력하세요"
+                                className="border-2 border-COMMON-light-gray p-2 "
+                                register={register}
+                            />
+                            <label className="pt-7">Password</label>
+                            <Input
+                                name="password"
+                                type="password"
+                                placeholder="비밀번호를 입력하세요"
+                                className="border-2 border-COMMON-light-gray p-2 "
+                                register={register}
+                            />
+                            <div className="pt-[15px]">
+                                <CustomButton
+                                    variant="common"
+                                    size="small"
+                                    shape="roundedSquare"
+                                >
+                                    로그인
+                                </CustomButton>
+                            </div>
+                        </div>
+                    </form>
 
                     <div className="flex flex-row">
                         <p className="p-4 text-ti text-POKETYPE-rock">
