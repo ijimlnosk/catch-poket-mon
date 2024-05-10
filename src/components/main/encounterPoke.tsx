@@ -7,11 +7,11 @@ import Modal from "../commons/modal";
 import SuccessFailOverlay from "./successFailOverlay";
 import useCatchPokemon from "../../hook/useCatchPokemon";
 import {
-    catchFail,
+    handleCatchFail,
     handleNewSession,
     handleRunAway,
     handleSuccess,
-} from "../../utils/\bencounterPokeUtils";
+} from "../../utils/encounterPokeUtils";
 import EncounterPokeScreen from "./encounterPokeScreen";
 type PokeCon = {
     returnLevel1: VoidFunction;
@@ -42,7 +42,7 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
                 <SuccessFailOverlay
                     result={catchResult}
                     onClose={() =>
-                        catchFail(false, () =>
+                        handleCatchFail(false, () =>
                             handleNewSession(returnLevel1, queryClient)
                         )
                     }
