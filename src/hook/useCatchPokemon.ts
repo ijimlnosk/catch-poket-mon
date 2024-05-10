@@ -38,7 +38,7 @@ const useCatchPokemon = (data: PokeData | undefined | null) => {
                     poke_id: data.pokemon.id,
                     type: typesName,
                     name: data.species.names[2].name,
-                    url: data.pokemon.sprites.front_default,
+                    url: data.pokemon.sprites.other.showdown.front_default,
                     background: data.species.color.name,
                 };
                 mutate(postPokeData);
