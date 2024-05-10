@@ -15,15 +15,14 @@ export const useSigninMutation = () => {
         (formData: FormValues) => postSignin(formData),
         {
             onSuccess: (data) => {
-                console.log(data.data.token)
                 if (data.status === 200) {
-                    setSessionToken(data.data.token)
-                    navigate('/');
+                    setSessionToken(data.data.token);
+                    navigate("/");
                 }
             },
             onError: () => {
                 alert("로그인에 실패했습니다");
-            }
+            },
         }
     );
 
