@@ -24,7 +24,6 @@ const SigninForm = () => {
 
     const onSubmit = (data: FormValues) => {
         mutation.mutate(data);
-        console.log(data);
     };
     const handleNavSignup = () => {
         navigate("/signup");

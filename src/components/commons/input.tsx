@@ -21,7 +21,7 @@ type InputProps<TFieldValues extends FormValues> = {
     validation?: RegisterOptions;
     className?: string;
     register: UseFormRegister<TFieldValues>;
-    errors?: FieldErrors<TFieldValues>;
+    errors: FieldErrors<TFieldValues>;
 };
 
 /**
