@@ -15,8 +15,7 @@ const useCatchPokemon = (data: PokeData | undefined | null) => {
         onSuccess: () => {
             setCatchResult(true);
         },
-        onError: (error: unknown) => {
-            console.error("포획 데이터 저장 실패", error);
+        onError: () => {
             setCatchResult(false);
         },
     });
@@ -24,7 +23,6 @@ const useCatchPokemon = (data: PokeData | undefined | null) => {
     // 포획 버튼 클릭 이벤트
     const onCatchPoketMon = () => {
         if (!data) {
-            console.error("catch pokemon 데이터 없음");
             return;
         }
 
