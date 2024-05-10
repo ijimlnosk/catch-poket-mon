@@ -1,4 +1,5 @@
 import { PokemonData } from "../../types/pokeTypes/pokemonData";
+import TypeButton from "./typeButton";
 
 const PokemonCard = ({ pokeId, type, name, url }: PokemonData) => {
     return (
@@ -11,11 +12,19 @@ const PokemonCard = ({ pokeId, type, name, url }: PokemonData) => {
                     <img src={url} className="w-[80px] h-[80px]" />
                     <div className="w-full flex justify-center items-center flex-col ">
                         <div className="w-full rounded-xl flex justify-center items-center">
-                            {type.map((poke, idx) => (
-                                <div key={idx} className="border-2  rounded-lg">
-                                    <p>{poke}</p>
-                                </div>
-                            ))}
+                            {type &&
+                                type.map(
+                                    (poke, idx) =>
+                                        poke && (
+                                            <TypeButton
+                                                pokeType={poke}
+                                                size="tiny"
+                                                key={idx}
+                                            >
+                                                {poke}
+                                            </TypeButton>
+                                        )
+                                )}
                         </div>
                         <div className="w-full flex justify-center items-center">
                             <p>{name}</p>
