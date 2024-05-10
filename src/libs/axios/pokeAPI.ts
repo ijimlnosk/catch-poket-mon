@@ -1,4 +1,3 @@
-import { AbilityRoot } from "../../types/pokeTypes/abilityType";
 import { ColorRoot } from "../../types/pokeTypes/pokeColorType";
 import { PokeNamedRoot } from "../../types/pokeTypes/pokeNamedType";
 import { PokemonRoot } from "../../types/pokeTypes/pokemonType";
@@ -14,13 +13,6 @@ interface TypeRoot {
 export const getAllPocketmon = async () => {
     const response = await pocketmonInstance.get<PokeNamedRoot>(
         "/pokemon/?limit=250&offset=20"
-    );
-    return response.data;
-};
-
-export const getAbilityInfo = async (poketId: number) => {
-    const response = await pocketmonInstance.get<AbilityRoot>(
-        `/ability/${poketId}`
     );
     return response.data;
 };
