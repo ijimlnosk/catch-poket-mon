@@ -4,7 +4,7 @@ import LoadingPage from "../commons/loadingPage";
 import { getPokemonSpecies, getPokemon } from "../../libs/axios/pokeAPI";
 import { useQueryClient } from "react-query";
 import Modal from "../commons/modal";
-import ResultOverlay from "./resultOverlay";
+import SuccessFailOverlay from "./successFailOverlay";
 import useCatchPokemon from "../../hook/useCatchPokemon";
 import {
     catchFail,
@@ -39,7 +39,7 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
     return (
         <>
             {catchResult !== null && (
-                <ResultOverlay
+                <SuccessFailOverlay
                     result={catchResult}
                     onClose={() =>
                         catchFail(false, () =>
