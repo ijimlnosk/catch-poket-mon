@@ -7,6 +7,10 @@ export const pocketmonInstance = axios.create({
 
 export const userDataInstance = axios.create({
     baseURL: `${import.meta.env.VITE_APP_URL}`,
+    headers: {
+        "Content-Type": "application/json",
+    },
+    withCredentials: true,
 });
 
 userDataInstance.interceptors.request.use(
