@@ -17,7 +17,7 @@ const handleSuccess = (
 };
 
 // 포획 실패 시
-const catchFail = (
+const handleCatchFail = (
     catchResult: boolean | null,
     handleNewSession: () => void
 ) => {
@@ -34,4 +34,4 @@ const handleRunAway = (
     handleNewSession();
 };
 
-export { handleNewSession, handleSuccess, catchFail, handleRunAway };
+export { handleNewSession, handleSuccess, handleCatchFail, handleRunAway };
