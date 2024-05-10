@@ -7,7 +7,11 @@ type ResultOverlayProps = {
     onNavigate: () => void;
 };
 
-const ResultOverlay = ({ result, onClose, onNavigate }: ResultOverlayProps) => {
+const SuccessFailOverlay = ({
+    result,
+    onClose,
+    onNavigate,
+}: ResultOverlayProps) => {
     const navigate = useNavigate();
     const isSuccess = result === true;
     return (
@@ -22,4 +26,4 @@ const ResultOverlay = ({ result, onClose, onNavigate }: ResultOverlayProps) => {
         />
     );
 };
-export default ResultOverlay;
+export default SuccessFailOverlay;
