@@ -19,7 +19,4 @@ export const SignupSchema = z.object({
         })
         .min(8)
         .optional(),
-    nickname:z.string().regex(/^.{1,6}$/,{
-        message:"6글자 이하로 작성해주세요"
-        })
 });
