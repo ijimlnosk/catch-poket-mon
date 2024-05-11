@@ -11,7 +11,8 @@ import { useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
     const navigate = useNavigate();
-    const { mutate, isOpen, toggleModal, modalContent } = useSignupMutation();
+    const { mutate, isOpen, toggleModal, modalContent, isSuccess } =
+        useSignupMutation();
     const {
         register,
         handleSubmit,
@@ -21,6 +22,12 @@ const SignupForm = () => {
     });
     const onSubmit = (data: UserRequest) => {
         mutate(data);
+    };
+    const handleModalClose = () => {
+        toggleModal();
+        if (isSuccess) {
+            navigate("/signin"); // 성공했을 때 로그인 페이지로 이동
+        }
     };
     return (
         <div className="w-[400px] h-[400px] flex items-center justify-center flex-col rounded-xl">
@@ -59,7 +66,7 @@ const SignupForm = () => {
                 title={modalContent}
                 isOpen={isOpen}
                 onClose={toggleModal}
-                onClick={() => navigate("/signin")}
+                onClick={handleModalClose}
                 buttonText="확인"
             />
         </div>
