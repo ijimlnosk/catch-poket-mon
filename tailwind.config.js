@@ -2,6 +2,7 @@
 
 import { COLORS } from "./src/libs/tailwindCss/designToken/color";
 import { FONT_SIZE } from "./src/libs/tailwindCss/designToken/fontSize";
+
 export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
@@ -12,7 +13,14 @@ export default {
             fontSize: {
                 ...FONT_SIZE,
             },
-
+            screens: {
+                xl: "1600px",
+                lg: "1200px",
+                bg: "1000px",
+                md: "800px",
+                sm: "600px",
+                ti: "400px",
+            },
             backgroundImage: {
                 "main-background": "url('/src/assets/imgs/mainBackground.png')",
             },

@@ -1,7 +1,7 @@
 import { useMutation } from "react-query";
 import { postSignin } from "../libs/axios/userAPI";
 import { useNavigate } from "react-router-dom";
-import { setSessionToken } from "../utils/storageUtils";
+import { setSessionToken, setSessionUserInfo } from "../utils/storageUtils";
 
 interface FormValues {
     userId: string;
@@ -17,6 +17,11 @@ export const useSigninMutation = () => {
             onSuccess: (data) => {
                 if (data.status === 200) {
                     setSessionToken(data.data.token);
+                    const userInfo = {
+                        userId: data.data.userId,
+                        nickName: data.data.info.nickName,
+                    };
+                    setSessionUserInfo(userInfo);
                     navigate("/");
                 }
             },

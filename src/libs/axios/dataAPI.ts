@@ -1,3 +1,4 @@
+import { Pokemon } from "../../types/pokeTypes/pokemonData";
 import { userDataInstance } from "./axiosInstance";
 
 interface PokeRequest {
@@ -39,14 +40,21 @@ export const postData = async (postPokeData: PokeRequest) => {
 };
 
 //포획한 포켓몬 불러오기
-export const getData = async () => {
-    const getDataResponse = await userDataInstance.get("/data/poke", {
-        params: {
-            ...defaultPokeData,
-        },
-    });
-
-    return getDataResponse.data;
+export const getData = async (
+    startPage: number,
+    endPage: number
+): Promise<{ data: Pokemon[] }> => {
+    const requests = Array.from({ length: endPage - startPage + 1 }, (_, i) =>
+        userDataInstance.get("/data/poke", {
+            params: {
+                ...defaultPokeData,
+                page: startPage + i,
+            },
+        })
+    );
+    const responses = await Promise.all(requests);
+    const pokemons = responses.flatMap((res) => res.data.data);
+    return { data: pokemons };
 };
 
 //포획된 포켓몬 놓아주기

@@ -28,12 +28,12 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
     const [pokeConfirm] = useState<boolean>(false);
     const queryClient = useQueryClient();
     const [runAway, setRunAway] = useState<boolean>(false);
-    const { data, error, isLoading } = useRandomPokeData({
+    const { data, error, isLoading, isFetching } = useRandomPokeData({
         getPokemonSpecies,
         getPokemon,
     });
     const { catchResult, onCatchPoketMon } = useCatchPokemon(data);
-    if (isLoading) return <LoadingPage />;
+    if (isLoading || isFetching) return <LoadingPage />;
     if (error) return <div>error</div>;
     if (!data) return <div>데이터 없음</div>;
     return (
