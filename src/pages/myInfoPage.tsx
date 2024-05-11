@@ -1,10 +1,10 @@
-import UserInfo from "../components/myinfo/userInfo";
-import ProfileChange from "../components/myinfo/profileChange";
-import PokemonBasket from "../components/myinfo/pokemonBasket";
 import { getSessionUserInfo } from "../utils/storageUtils";
 import { useQuery } from "react-query";
 import { getData } from "../libs/axios/dataAPI";
 import LoadingPage from "../components/commons/loadingPage";
+import ProfileChange from "../components/myInfo/profileChange";
+import UserInfo from "../components/myInfo/userInfo";
+import PokemonBasket from "../components/myInfo/pokemonBasket";
 
 const MyInfoPage = () => {
     const userInfo = getSessionUserInfo();
