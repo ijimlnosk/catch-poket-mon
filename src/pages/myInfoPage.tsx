@@ -14,6 +14,9 @@ const MyInfoPage = () => {
         () => getData(1, 3),
         {
             keepPreviousData: true,
+            refetchOnWindowFocus: false,
+            staleTime: Infinity,
+            cacheTime: 1000 * 60 * 5,
         }
     );
 
