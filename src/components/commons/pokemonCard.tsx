@@ -1,7 +1,7 @@
 import { PokemonData } from "../../types/pokeTypes/pokemonData";
 import TypeButton from "./typeButton";
 
-const PokemonCard = ({ pokeId, type, name, url }: PokemonData) => {
+const PokemonCard = ({ pokeId, type, name, url, onClick }: PokemonData) => {
     return (
         <div className="w-[200px] h-[200px] bg-SYSTEM-white flex justify-center items-center">
             <div className="w-[200px] h-[200px] flex justify-center items-center rounded-lg">
@@ -9,7 +9,11 @@ const PokemonCard = ({ pokeId, type, name, url }: PokemonData) => {
                     <div className="w-full h-[25px] flex justify-center items-center">
                         <p className="text-[20px]">#{pokeId}</p>
                     </div>
-                    <img src={url} className="w-[80px] h-[80px]" />
+                    <img
+                        src={url}
+                        className="w-[80px] h-[80px] cursor-pointer"
+                        onClick={onClick}
+                    />
                     <div className="w-full flex justify-center items-center flex-col ">
                         <div className="w-full rounded-xl flex justify-center items-center">
                             {type &&
