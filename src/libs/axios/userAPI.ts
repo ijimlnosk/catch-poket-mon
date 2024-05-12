@@ -1,4 +1,3 @@
-import { profile } from "console";
 import { userDataInstance } from "./axiosInstance";
 
 export interface UserRequest {
@@ -35,13 +34,13 @@ export const getRefresh = async () => {
 };
 
 //회원정보 수정
-interface profile {
+export interface Profile {
     image?: string;
-    nickname?: string;
+    nickName?: string;
 }
 
 //프로필이미지 수정
-export const patchUpdateProfileUrl = async (image: profile) => {
+export const patchUpdateProfileUrl = async (image: Profile) => {
     const response = await userDataInstance.patch(
         "/user/update/profileUrl",
         image
@@ -50,10 +49,9 @@ export const patchUpdateProfileUrl = async (image: profile) => {
 };
 
 //프로필 닉네임 수정
-export const patchUpdateInfo = async (nickname: profile) => {
-    const response = await userDataInstance.patch(
-        "/user/update.info",
-        nickname
-    );
+export const patchUpdateInfo = async (profile: Profile) => {
+    const response = await userDataInstance.patch("/user/update/info", {
+        nickname: profile.nickName,
+    });
     return response;
 };
