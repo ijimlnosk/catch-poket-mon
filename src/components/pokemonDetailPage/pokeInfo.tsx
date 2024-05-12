@@ -14,7 +14,6 @@ type PokeType = {
 const PokeInfo: React.FC<{ pokeId: number }> = ({ pokeId }) => {
     const { speciesData, isLoading } = useGetPokeKorean(pokeId);
     const { data } = useGetPokeDetail(pokeId);
-    console.log(data, "datadataaaaa");
     if (isLoading) {
         return <LoadingPage />;
     }

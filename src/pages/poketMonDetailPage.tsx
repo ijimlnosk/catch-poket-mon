@@ -1,5 +1,4 @@
 import { useLocation } from "react-router-dom";
-import PokeEvolution from "../components/pokemonDetailPage/pokeEvolution";
 import PokeInfo from "../components/pokemonDetailPage/pokeInfo";
 import { Pokemon } from "../types/pokeTypes/pokemonData";
 

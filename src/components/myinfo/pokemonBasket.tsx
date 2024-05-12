@@ -4,8 +4,6 @@ import CustomButton from "../commons/button";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "react-query";
 import { useState } from "react";
-import Overlay from "../commons/overlay";
-import PoketMonDetailPage from "../../pages/poketMonDetailPage";
 
 type PokemonBasketProps = {
     data: {
