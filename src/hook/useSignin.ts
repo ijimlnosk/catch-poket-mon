@@ -1,18 +1,17 @@
 import { useMutation } from "react-query";
-import { postSignin } from "../libs/axios/userAPI";
-import { useNavigate } from "react-router-dom";
+import { UserRequest, postSignin } from "../libs/axios/userAPI";
 import { setSessionToken, setSessionUserInfo } from "../utils/storageUtils";
-
-interface FormValues {
-    userId: string;
-    password: string;
-}
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const useSigninMutation = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [modalContent, setModalContent] = useState("");
     const navigate = useNavigate();
+    const toggleModal = () => setIsOpen(!isOpen);
 
-    const mutation = useMutation(
-        (formData: FormValues) => postSignin(formData),
+    const { mutate } = useMutation(
+        (formData: UserRequest) => postSignin(formData),
         {
             onSuccess: (data) => {
                 if (data.status === 200) {
@@ -26,10 +25,11 @@ export const useSigninMutation = () => {
                 }
             },
             onError: () => {
-                alert("로그인에 실패했습니다");
+                setModalContent("로그인에 실패했습니다.");
+                toggleModal();
             },
         }
     );
 
-    return mutation;
+    return { mutate, isOpen, toggleModal, modalContent };
 };

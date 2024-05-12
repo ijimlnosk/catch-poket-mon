@@ -1,32 +1,31 @@
 import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom"
-import { postSignup } from "../libs/axios/userAPI";
-// import Modal from "../components/commons/modal";
-// import { useState } from "react";
+import { UserRequest, postSignup } from "../libs/axios/userAPI";
+import { useState } from "react";
 
+export const useSignupMutation = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [modalContent, setModalContent] = useState("");
+    const [isSuccess, setIsSuccess] = useState(false);
+    const toggleModal = () => setIsOpen(!isOpen);
 
-interface FormValues {
-    userId: string;
-    password: string;
-    nickname:string;
-}
-
-export const useSignupMutation=()=>{
-    const navigate = useNavigate();
-    // const [isOpen,setIsOpen]=useState(false)
-    // const toggleOverlay=()=>setIsOpen(!isOpen)
-
-    const mutation=useMutation(( formData:FormValues)=>postSignup(formData),{
-        onSuccess:(data)=>{
-            if(data.status===200){
-                navigate('/signin')
-                alert("축하합니다^^! 다시 로그인해주세요!")
-            } 
-        },
-        onError:()=>(
-            alert("이미 존재하는 계정입니다"))
-    }
-       )
-       return mutation
-}
-    
+    const { mutate } = useMutation(
+        (formData: UserRequest) => postSignup(formData),
+        {
+            onSuccess: (data) => {
+                if (data.status === 200) {
+                    setModalContent(
+                        `회원가입에 성공했습니다!!!!!로그인 페이지로 이동합니다.`
+                    );
+                    setIsSuccess(true);
+                    toggleModal();
+                }
+            },
+            onError: () => {
+                setModalContent("이미 존재하는 계정입니다.");
+                setIsSuccess(false);
+                toggleModal();
+            },
+        }
+    );
+    return { mutate, isOpen, toggleModal, modalContent, isSuccess };
+};

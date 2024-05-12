@@ -6,24 +6,22 @@ import { SigninSchema } from "../../constants/schema";
 import { useSigninMutation } from "../../hook/useSignin";
 import logo from "../../assets/imgs/logo.png";
 import { useNavigate } from "react-router-dom";
+import Modal from "../commons/modal";
+import { UserRequest } from "../../libs/axios/userAPI";
 
-interface FormValues {
-    userId: string;
-    password: string;
-}
 const SigninForm = () => {
-    const mutation = useSigninMutation();
+    const { mutate, isOpen, toggleModal, modalContent } = useSigninMutation();
     const navigate = useNavigate();
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<FormValues>({
+    } = useForm<UserRequest>({
         resolver: zodResolver(SigninSchema),
     });
 
-    const onSubmit = (data: FormValues) => {
-        mutation.mutate(data);
+    const onSubmit = (data: UserRequest) => {
+        mutate(data);
     };
     const handleNavSignup = () => {
         navigate("/signup");
@@ -64,6 +62,13 @@ const SigninForm = () => {
                     </div>
                 </div>
             </form>
+            <Modal
+                title={modalContent}
+                isOpen={isOpen}
+                onClick={toggleModal}
+                onClose={toggleModal}
+                buttonText="확인"
+            />
 
             <div className="flex flex-row">
                 <p className="p-4 text-ti text-POKETYPE-rock">
