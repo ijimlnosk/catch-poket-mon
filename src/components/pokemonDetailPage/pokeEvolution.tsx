@@ -1,6 +1,6 @@
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
-const PokeEvolution: React.FC = () => {
+const PokeEvolution: React.FC<{ pokeId: number }> = ({ pokeId }) => {
     return (
         <div className="w-full h-1/2 grid grid-cols-[1fr_3fr_1fr] ">
             <div className="w-full h-full flex items-center justify-center">

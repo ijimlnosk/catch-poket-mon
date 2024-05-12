@@ -1,32 +1,64 @@
-const PokeInfo: React.FC = () => {
+import LoadingPage from "../commons/loadingPage";
+import {
+    useGetPokeDetail,
+    useGetPokeKorean,
+} from "../../hook/useGetPokeDetail";
+import TypeButton from "../commons/typeButton";
+
+type PokeType = {
+    type: {
+        name: string;
+    };
+};
+
+const PokeInfo: React.FC<{ pokeId: number }> = ({ pokeId }) => {
+    const { speciesData, isLoading } = useGetPokeKorean(pokeId);
+    const { data } = useGetPokeDetail(pokeId);
+    console.log(data, "datadataaaaa");
+    if (isLoading) {
+        return <LoadingPage />;
+    }
+
     return (
-        <div className="w-[80%] h-[250px] flex flex-row justify-center">
-            <div className="w-[300px] h-full rounded-lg flex flex-col justify-center items-center ">
-                <p className="text-lg">#pokeId</p>
-                <p className="text-lg">#pokeName</p>
-                <img
-                    src="https://i.ibb.co/cQbSy50/image-11.png"
-                    className="w-[200px]"
-                />
-            </div>
-            <div className="w-[50%] h-full bg-POKETYPE-grass rounded-lg flex flex-row p-4 ">
-                <div className="w-[50%] h-full border-r-2 border-SYSTEM-black">
-                    <p>기본 정보</p>
-                    <div className="p-4">
-                        <p>키 : </p>
-                        <p>무게 : </p>
-                        <p>능력치 : </p>
-                        <p>타입 : </p>
-                    </div>
+        <div className="w-[80%] h-[250px] flex flex-row justify-center ">
+            {speciesData && (
+                <div className="w-[300px] h-full  rounded-lg flex flex-col justify-center items-center">
+                    <p className="text-lg">{speciesData.names[2].name}</p>
+                    {data && (
+                        <img
+                            src={data.sprites.other.showdown.front_default}
+                            className="w-[150px] items-center "
+                        />
+                    )}
                 </div>
-                <div className="w-[50%] h-full pl-4">
-                    스탯
-                    <div className=" w-[full] h-[200px] flex justify-center items-center">
+            )}
+            {data && (
+                <div className="w-[50%] h-full bg-POKETYPE-grass rounded-lg flex flex-row p-4">
+                    <div className="w-[50%] h-full border-r-2 border-SYSTEM-black">
+                        <p className="text-lg">포켓몬 정보</p>
+                        <div className="p-4">
+                            <p>포켓몬 ID: {data.id}</p>
+                            <p>무게 : {data.weight}</p>
+                            <p>키 : {data.height}</p>
+                            {data.types.map((poke: PokeType, idx) => (
+                                <TypeButton key={idx}>
+                                    {poke.type.name}
+                                </TypeButton>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="w-[50%] h-full pl-4">
                         스탯
+                        {data.stats.map((item, idx) => (
+                            <div key={idx}>
+                                {item.stat.name}:{item.base_stat}
+                            </div>
+                        ))}
                     </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 };
+
 export default PokeInfo;

@@ -3,6 +3,9 @@ import PokemonCard from "../commons/pokemonCard";
 import CustomButton from "../commons/button";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "react-query";
+import { useState } from "react";
+import Overlay from "../commons/overlay";
+import PoketMonDetailPage from "../../pages/poketMonDetailPage";
 
 type PokemonBasketProps = {
     data: {
@@ -11,6 +14,10 @@ type PokemonBasketProps = {
 };
 
 const PokemonBasket = ({ data }: PokemonBasketProps) => {
+    const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(
+        null
+    );
+
     const navigate = useNavigate();
     const queryClient = useQueryClient();
 
@@ -18,7 +25,14 @@ const PokemonBasket = ({ data }: PokemonBasketProps) => {
         navigate("/");
         queryClient.invalidateQueries("pokeData");
     };
+    const handlePokeClick = (poke: Pokemon) => {
+        setSelectedPokemon(poke);
+        navigate("/poketmondetail", {
+            state: { pokemon: poke },
+        });
+    };
 
+    console.log(selectedPokemon);
     return (
         <div className="w-full p-[20px] flex items-center justify-center flex-col ">
             <div className="w-[57%] bg-SYSTEM-white rounded-xl flex items-center justify-center flex-col pb-8">
@@ -46,6 +60,7 @@ const PokemonBasket = ({ data }: PokemonBasketProps) => {
                                 name={poke.data.name}
                                 type={poke.data.type}
                                 url={poke.data.url}
+                                onClick={() => handlePokeClick(poke)}
                             />
                         </div>
                     ))}

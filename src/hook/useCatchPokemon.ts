@@ -4,7 +4,7 @@ import { postData } from "../libs/axios/dataAPI";
 import { SpeciesRoot } from "../types/pokeTypes/speciesType";
 import { PokemonRoot } from "../types/pokeTypes/pokemonType";
 
-interface PokeData {
+export interface PokeData {
     species: SpeciesRoot;
     pokemon: PokemonRoot;
 }
@@ -25,7 +25,6 @@ const useCatchPokemon = (data: PokeData | undefined | null) => {
         if (!data) {
             return;
         }
-
         const isSuccess =
             data.species.capture_rate &&
             Math.random() < data.species.capture_rate / 255;
