@@ -9,11 +9,12 @@ import useCatchPokemon from "../../hook/useCatchPokemon";
 import {
     handleCatchFail,
     handleNewSession,
-    handleRunAway,
     handleSuccess,
 } from "../../utils/encounterPokeUtils";
 import EncounterPokeScreen from "./encounterPokeScreen";
 import CustomButton from "../commons/button";
+import { useDispatch } from "react-redux";
+import { setCatching } from "../../libs/redux/catchingSlice";
 type PokeCon = {
     returnLevel1: VoidFunction;
 };
@@ -34,6 +35,7 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
         getPokemon,
     });
     const { catchResult, onCatchPoketMon } = useCatchPokemon(data);
+    const dispatch = useDispatch();
     if (isLoading || isFetching) return <LoadingPage />;
     if (error)
         return (
@@ -50,6 +52,14 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
             </div>
         );
     if (!data) return <div>데이터 없음</div>;
+
+    const handleSafeRun = () => {
+        handleCatchFail(false, () =>
+            handleNewSession(returnLevel1, queryClient)
+        );
+        dispatch(setCatching(false));
+    };
+
     return (
         <>
             {catchResult !== null && (
@@ -71,11 +81,7 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
                 <Modal
                     title="무사히 도망쳤다!"
                     buttonText="확인"
-                    onClick={() =>
-                        handleRunAway(setRunAway, () =>
-                            handleNewSession(returnLevel1, queryClient)
-                        )
-                    }
+                    onClick={handleSafeRun}
                     isOpen={runAway}
                     onClose={() => setRunAway(false)}
                 />

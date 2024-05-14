@@ -35,6 +35,11 @@ const EncounterPokeScreen = ({
         dispatch(setCatching(true));
         onCatchPoketMon();
     };
+
+    const handleRunway = () => {
+        dispatch(setCatching(true));
+        setRunAway(true);
+    };
     return (
         <div className="absolutes">
             <div className="w-full flex items-center justify-center">
@@ -68,7 +73,7 @@ const EncounterPokeScreen = ({
                 </button>
                 <button
                     className="w-[150px] h-[60px] bg-MAIN-gray"
-                    onClick={() => setRunAway(true)}
+                    onClick={handleRunway}
                 >
                     도망가기
                 </button>
