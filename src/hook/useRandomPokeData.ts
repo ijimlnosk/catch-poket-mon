@@ -20,47 +20,41 @@ export const useRandomPokeData = ({
     return useQuery<PokeDetails | null>(
         "pokeData",
         async () => {
-            const batchSize = 300;
             const totalPokes = 900;
-            const batches = Math.ceil(totalPokes / batchSize);
-            let allDetails: (PokeDetails | null)[] = [];
-            for (let i = 0; i < batches; i++) {
-                const offset = i * batchSize;
-                const response = await getAllPocketmon({
-                    limit: batchSize,
-                    offset: offset,
-                });
+            const randomOffset = Math.floor(Math.random() * totalPokes); // 랜덤 오프셋 생성
 
-                // 병렬 요청 처리
-                const detailsPromises = response.results.map(async (poke) => {
-                    const match = poke.url.match(/\/pokemon\/(\d+)\//);
-                    if (match) {
-                        const pokeId = parseInt(match[1], 10);
-                        try {
-                            const [species, pokemon] = await Promise.all([
-                                getPokemonSpecies(pokeId),
-                                getPokemon(pokeId),
-                            ]);
-                            return { species, pokemon };
-                        } catch (error) {
-                            console.error(
-                                `Error fetching data for PokeID ${pokeId}:`,
-                                error
-                            );
-                            return null;
-                        }
+            const response = await getAllPocketmon({
+                limit: 1,
+                offset: randomOffset,
+            });
+
+            // 병렬 요청 처리
+            const detailsPromise = response.results.map(async (poke) => {
+                const match = poke.url.match(/\/pokemon\/(\d+)\//);
+                if (match) {
+                    const pokeId = parseInt(match[1], 10);
+                    try {
+                        const [species, pokemon] = await Promise.all([
+                            getPokemonSpecies(pokeId),
+                            getPokemon(pokeId),
+                        ]);
+                        return { species, pokemon };
+                    } catch (error) {
+                        console.error(
+                            `Error fetching data for PokeID ${pokeId}:`,
+                            error
+                        );
+                        return null;
                     }
-                    return null;
-                });
+                }
+                return null;
+            });
 
-                const batchDetails = (
-                    await Promise.all(detailsPromises)
-                ).filter((detail) => detail !== null);
-                allDetails = allDetails.concat(batchDetails);
-            }
-
-            const randomIndex = Math.floor(Math.random() * allDetails.length);
-            return allDetails[randomIndex];
+            const details =
+                (await Promise.all(detailsPromise)).find(
+                    (detail) => detail !== null
+                ) || null;
+            return details;
         },
         {
             refetchOnWindowFocus: false,
