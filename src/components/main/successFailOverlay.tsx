@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Modal from "../commons/modal";
 import { useDispatch } from "react-redux";
-import { setCatching } from "../../libs/redux/catching.Slice";
+import { setCatching } from "../../libs/redux/catchingSlice";
 
 type ResultOverlayProps = {
     result: boolean;

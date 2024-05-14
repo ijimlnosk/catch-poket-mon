@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { PokemonRoot } from "../../types/pokeTypes/pokemonType";
 import { SpeciesRoot } from "../../types/pokeTypes/speciesType";
-import { setCatching } from "../../libs/redux/catching.Slice";
+import { setCatching } from "../../libs/redux/catchingSlice";
 import { RootState } from "../../libs/redux/store";
 
 type PokeData = {

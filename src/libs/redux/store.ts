@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import gameStartSlice from "./gameStartSlice";
-import catchingSlice from "./catching.Slice";
+import catchingSlice from "./catchingSlice";
 
 export const store = configureStore({
     reducer: {
