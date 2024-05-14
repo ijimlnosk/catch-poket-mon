@@ -10,9 +10,14 @@ interface TypeRoot {
     name: string;
 }
 
-export const getAllPocketmon = async () => {
+interface getAllType {
+    limit: number;
+    offset: number;
+}
+
+export const getAllPocketmon = async ({ limit, offset }: getAllType) => {
     const response = await pocketmonInstance.get<PokeNamedRoot>(
-        "/pokemon/?limit=250&offset=20"
+        `/pokemon/?limit=${limit}&offset=${offset}`
     );
     return response.data;
 };
