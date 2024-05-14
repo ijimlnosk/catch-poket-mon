@@ -17,26 +17,32 @@ export const COLORS = {
         light_gray: "#e0e0e0", //버튼클릭시
     },
     POKETYPE: {
-        rock: "#A1A1A1",
-        grass: "#70A83B",
-        ice: "#96D9D6",
-        fire: "#F76545",
-        normal: "#A8A77A",
-        poison: "#A974BC",
-        ground: "#9B897B",
-        electric: "#F7C545",
-        flying:"#A2CFF0",
-        water:"#6390F0",
-        steel:"#B7B7CE",
-        ghost:"#735797",
-        bug:"#A6B91A",
-        dragon:"#6F35FC",
-        dark:"#705746",
-        fairy:"#D685AD",
-        psychic:"#F95587",
-        fighting:"#C22E28",
-        shadow:"#604E85",
-        unknown:"#6A6A6A"
+        rock: "#A1A1A150",
+        grass: "#70A83B50",
+        ice: "#96D9D650",
+        fire: "#F7654550",
+        normal: "#A8A77A50",
+        poison: "#A974BC50",
+        ground: "#9B897B50",
+        electric: "#F7C54550",
+        flying:"#A2CFF050",
+        water:"#6390F050",
+        steel:"#B7B7CE50",
+        ghost:"#73579750",
+        bug:"#A6B91A50",
+        dragon:"#6F35FC50",
+        dark:"#70574650",
+        fairy:"#D685AD50",
+        psychic:"#F9558750",
+        fighting:"#C22E2850",
+        shadow:"#604E8550",
+        unknown:"#6A6A6A50"
 
     },
 } as const;
+
+// 디테일 페이지에서 포켓몬 정보 배경색 바꾸기 위한 함수
+export const getBackgroundColor = (type: keyof typeof COLORS["POKETYPE"]) => {
+    return COLORS.POKETYPE[type] || COLORS.COMMON.red;
+};
+

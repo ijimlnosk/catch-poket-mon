@@ -4,6 +4,8 @@ import CustomButton from "../commons/button";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "react-query";
 import { useState } from "react";
+import Overlay from "../commons/overlay";
+import PoketMonDetailPage from "../../pages/poketMonDetailPage";
 
 type PokemonBasketProps = {
     data: {
@@ -15,6 +17,8 @@ const PokemonBasket = ({ data }: PokemonBasketProps) => {
     const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(
         null
     );
+    const [isOpen, setIsOpen] = useState(false);
+    const toggleOverlay = () => setIsOpen(!isOpen);
 
     const navigate = useNavigate();
     const queryClient = useQueryClient();
@@ -25,9 +29,7 @@ const PokemonBasket = ({ data }: PokemonBasketProps) => {
     };
     const handlePokeClick = (poke: Pokemon) => {
         setSelectedPokemon(poke);
-        navigate("/poketmondetail", {
-            state: { pokemon: poke },
-        });
+        toggleOverlay(); //오버레이 열기
     };
 
     console.log(selectedPokemon);
@@ -60,6 +62,18 @@ const PokemonBasket = ({ data }: PokemonBasketProps) => {
                                 url={poke.data.url}
                                 onClick={() => handlePokeClick(poke)}
                             />
+                            <Overlay
+                                isOpen={isOpen}
+                                onClose={() => setIsOpen(false)}
+                                widthCss={"max-w-3xl"}
+                                heightCss={"h-1/2"}
+                            >
+                                {selectedPokemon && (
+                                    <PoketMonDetailPage
+                                        poke={selectedPokemon}
+                                    />
+                                )}
+                            </Overlay>
                         </div>
                     ))}
                 </div>
