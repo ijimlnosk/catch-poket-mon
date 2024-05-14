@@ -1,7 +1,6 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 import MainPage from "../../pages/mainPage";
 import MyInfoPage from "../../pages/myInfoPage";
-import PoketMonDetailPage from "../../pages/poketMonDetailPage";
 import AdminRouter from "./adminRouter";
 import SigninPage from "../../pages/signinPage";
 import SignupPage from "../../pages/signupPage";
@@ -16,10 +15,6 @@ const ADMIN_ROUTER: RouteObject = {
         {
             path: "/myinfo",
             element: <MyInfoPage />,
-        },
-        {
-            path: "/poketmondetail",
-            element: <PoketMonDetailPage />,
         },
     ],
 };
