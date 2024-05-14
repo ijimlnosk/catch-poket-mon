@@ -1,5 +1,8 @@
+import { useDispatch, useSelector } from "react-redux";
 import { PokemonRoot } from "../../types/pokeTypes/pokemonType";
 import { SpeciesRoot } from "../../types/pokeTypes/speciesType";
+import { setCatching } from "../../libs/redux/catchingSlice";
+import { RootState } from "../../libs/redux/store";
 
 type PokeData = {
     species: SpeciesRoot;
@@ -17,11 +20,21 @@ const EncounterPokeScreen = ({
     onCatchPoketMon,
     setRunAway,
 }: ScreenData) => {
+    const dispatch = useDispatch();
+    const isCatching = useSelector(
+        (state: RootState) => state.catching.isCatching
+    );
+
     // 포획률 계산
     const captureRate = data?.species.capture_rate;
     const capturePercent = captureRate
         ? ((captureRate / 255) * 100).toFixed(2)
         : null;
+
+    const handleCatch = () => {
+        dispatch(setCatching(true));
+        onCatchPoketMon();
+    };
     return (
         <div className="absolutes">
             <div className="w-full flex items-center justify-center">
@@ -48,7 +61,8 @@ const EncounterPokeScreen = ({
             <div className="flex justify-center gap-[30px]">
                 <button
                     className="w-[150px] h-[60px] bg-MAIN-gray z-50"
-                    onClick={onCatchPoketMon}
+                    onClick={handleCatch}
+                    disabled={isCatching}
                 >
                     포획하기
                 </button>
