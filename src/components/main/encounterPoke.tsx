@@ -9,10 +9,12 @@ import useCatchPokemon from "../../hook/useCatchPokemon";
 import {
     handleCatchFail,
     handleNewSession,
-    handleRunAway,
     handleSuccess,
 } from "../../utils/encounterPokeUtils";
 import EncounterPokeScreen from "./encounterPokeScreen";
+import CustomButton from "../commons/button";
+import { useDispatch } from "react-redux";
+import { setCatching } from "../../libs/redux/catchingSlice";
 type PokeCon = {
     returnLevel1: VoidFunction;
 };
@@ -28,14 +30,36 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
     const [pokeConfirm] = useState<boolean>(false);
     const queryClient = useQueryClient();
     const [runAway, setRunAway] = useState<boolean>(false);
-    const { data, error, isLoading, isFetching } = useRandomPokeData({
+    const { data, error, isLoading, isFetching, refetch } = useRandomPokeData({
         getPokemonSpecies,
         getPokemon,
     });
     const { catchResult, onCatchPoketMon } = useCatchPokemon(data);
+    const dispatch = useDispatch();
     if (isLoading || isFetching) return <LoadingPage />;
     if (error) return <div>error</div>;
-    if (!data) return <div>데이터 없음</div>;
+    if (!data)
+        return (
+            <div>
+                <p>앗! 포켓몬이 없는 것 같다!</p>
+                <CustomButton
+                    variant={"common"}
+                    size={"medium"}
+                    shape={"roundedSquare"}
+                    onClick={() => refetch()}
+                >
+                    다시 살펴보기
+                </CustomButton>
+            </div>
+        );
+
+    const handleSafeRun = () => {
+        handleCatchFail(false, () =>
+            handleNewSession(returnLevel1, queryClient)
+        );
+        dispatch(setCatching(false));
+    };
+
     return (
         <>
             {catchResult !== null && (
@@ -57,11 +81,7 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
                 <Modal
                     title="무사히 도망쳤다!"
                     buttonText="확인"
-                    onClick={() =>
-                        handleRunAway(setRunAway, () =>
-                            handleNewSession(returnLevel1, queryClient)
-                        )
-                    }
+                    onClick={handleSafeRun}
                     isOpen={runAway}
                     onClose={() => setRunAway(false)}
                 />
