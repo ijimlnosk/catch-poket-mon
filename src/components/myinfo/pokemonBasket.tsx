@@ -32,7 +32,6 @@ const PokemonBasket = ({ data }: PokemonBasketProps) => {
         toggleOverlay(); //오버레이 열기
     };
 
-    console.log(selectedPokemon);
     return (
         <div className="w-full p-[20px] flex items-center justify-center flex-col ">
             <div className="w-[57%] bg-SYSTEM-white rounded-xl flex items-center justify-center flex-col pb-8">
