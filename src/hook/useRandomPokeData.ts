@@ -40,10 +40,10 @@ export const useRandomPokeData = ({
                         ]);
                         return { species, pokemon };
                     } catch (error) {
-                        console.error(
-                            `Error fetching data for PokeID ${pokeId}:`,
-                            error
-                        );
+                        if (error instanceof Error) {
+                            throw new Error(error.message);
+                        }
+
                         return null;
                     }
                 }
