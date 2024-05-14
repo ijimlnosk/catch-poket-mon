@@ -13,6 +13,7 @@ import {
     handleSuccess,
 } from "../../utils/encounterPokeUtils";
 import EncounterPokeScreen from "./encounterPokeScreen";
+import CustomButton from "../commons/button";
 type PokeCon = {
     returnLevel1: VoidFunction;
 };
@@ -28,13 +29,26 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
     const [pokeConfirm] = useState<boolean>(false);
     const queryClient = useQueryClient();
     const [runAway, setRunAway] = useState<boolean>(false);
-    const { data, error, isLoading, isFetching } = useRandomPokeData({
+    const { data, error, isLoading, isFetching, refetch } = useRandomPokeData({
         getPokemonSpecies,
         getPokemon,
     });
     const { catchResult, onCatchPoketMon } = useCatchPokemon(data);
     if (isLoading || isFetching) return <LoadingPage />;
-    if (error) return <div>error</div>;
+    if (error)
+        return (
+            <div>
+                <p>앗! 포켓몬이 없는 것 같다!</p>
+                <CustomButton
+                    variant={"common"}
+                    size={"medium"}
+                    shape={"roundedSquare"}
+                    onClick={() => refetch()}
+                >
+                    다시 살펴보기
+                </CustomButton>
+            </div>
+        );
     if (!data) return <div>데이터 없음</div>;
     return (
         <>
