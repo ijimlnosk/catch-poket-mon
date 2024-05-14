@@ -34,7 +34,6 @@ const EncounterPokeScreen = ({
     const handleCatch = () => {
         dispatch(setCatching(true));
         onCatchPoketMon();
-        console.log("click");
     };
     return (
         <div className="absolutes">
