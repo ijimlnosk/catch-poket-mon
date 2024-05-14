@@ -37,7 +37,8 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
     const { catchResult, onCatchPoketMon } = useCatchPokemon(data);
     const dispatch = useDispatch();
     if (isLoading || isFetching) return <LoadingPage />;
-    if (error)
+    if (error) return <div>error</div>;
+    if (!data)
         return (
             <div>
                 <p>앗! 포켓몬이 없는 것 같다!</p>
@@ -51,7 +52,6 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
                 </CustomButton>
             </div>
         );
-    if (!data) return <div>데이터 없음</div>;
 
     const handleSafeRun = () => {
         handleCatchFail(false, () =>
