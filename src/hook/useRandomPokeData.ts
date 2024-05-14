@@ -47,7 +47,6 @@ export const useRandomPokeData = ({
         {
             refetchOnWindowFocus: false,
             staleTime: Infinity,
-            cacheTime: 1000 * 60 * 5,
         }
     );
 };
