@@ -29,7 +29,7 @@ const Overlay: React.FC<OverlayProps> = ({
     if (!isOpen) return null;
 
     const contentCss = clsx(
-        "bg-white p-4 rounded-lg shadow-lg w-auto mx-auto my-auto",
+        "bg-white p-4 rounded-lg shadow-lg w-auto mx-auto my-auto flex justify-center items-center",
         widthCss,
         heightCss
     );

@@ -24,7 +24,7 @@ const PokeInfo: React.FC<{ pokeId: number }> = ({ pokeId }) => {
     }
 
     return (
-        <div className="w-[80%] h-[250px] flex flex-row justify-center ">
+        <div className="w-[100%] h-[300px] flex flex-row items-center justify-center ">
             {speciesData && (
                 <div
                     className="w-[300px] h-full  rounded-lg flex flex-col justify-center items-center"
@@ -48,7 +48,7 @@ const PokeInfo: React.FC<{ pokeId: number }> = ({ pokeId }) => {
                 <div
                     className={`w-[70%] h-full ${getBackgroundColor(data?.types[0].type.name as keyof (typeof COLORS)["POKETYPE"])} rounded-lg flex flex-row p-4`}
                 >
-                    <div className="w-[90%] h-full border-r-2 border-SYSTEM-black">
+                    <div className="w-[50%] h-full border-r-2 border-SYSTEM-black">
                         <p className="text-[20px]">포켓몬 정보</p>
                         <div className="p-4">
                             <p>포켓몬 ID: {data.id}</p>

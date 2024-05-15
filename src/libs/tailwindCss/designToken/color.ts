@@ -43,6 +43,6 @@ export const COLORS = {
 
 // 디테일 페이지에서 포켓몬 정보 배경색 바꾸기 위한 함수
 export const getBackgroundColor = (type: keyof typeof COLORS["POKETYPE"]) => {
-    return COLORS.POKETYPE[type] || COLORS.COMMON.red;
+    return COLORS.POKETYPE[type] || null;
 };
 
