@@ -58,7 +58,7 @@ export const getData = async (
 };
 
 //포획된 포켓몬 놓아주기
-export const deleteData = async (id: number) => {
+export const deleteData = async (id: string) => {
     const deleteDataResponse = await userDataInstance.delete(
         `/data/poke/${id}`,
         {

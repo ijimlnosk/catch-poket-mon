@@ -3,8 +3,8 @@ import Overlay from "./overlay";
 
 type ModalProps = {
     title: string;
-    buttonText: string;
-    onClick: () => void;
+    buttonText?: string;
+    onClick?: () => void;
     secondButtonText?: string;
     onSecondClick?: () => void;
     isOpen: boolean;
@@ -20,6 +20,7 @@ const Modal = ({
     isOpen,
     onClose,
 }: ModalProps) => {
+    if (!isOpen) return null;
     return (
         <Overlay isOpen={isOpen} onClose={onClose}>
             <div className="w-[300px] h-[150px] flex items-center justify-center flex-col">
