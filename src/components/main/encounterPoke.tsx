@@ -86,7 +86,7 @@ const EncounterPoke = ({ returnLevel1 }: PokeCon) => {
                     onClose={() => setRunAway(false)}
                 />
             )}
-            <div className="flex flex-col">
+            <div className="w-full flex flex-col">
                 {!pokeConfirm && (
                     <EncounterPokeScreen
                         data={data}

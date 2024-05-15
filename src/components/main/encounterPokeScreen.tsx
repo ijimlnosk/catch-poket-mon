@@ -41,9 +41,9 @@ const EncounterPokeScreen = ({
         setRunAway(true);
     };
     return (
-        <div className="absolutes">
+        <div className="absolutes w-full">
             <div className="w-full flex items-center justify-center">
-                <div className="w-[922px] h-[700px] flex justify-center items-center flex-col  ">
+                <div className="max-w-[922px] w-full h-[700px] flex justify-center items-center flex-col">
                     <div className=" mr-[-770px] mb-[-35px]">
                         <p className=" text-lg">포획률 : {capturePercent}%</p>
                     </div>
@@ -57,7 +57,7 @@ const EncounterPokeScreen = ({
                             className="h-[200px] "
                         />
                     </div>
-                    <div className="w-[100%] h-[50px] mt-[-10px] text-xl bg-SYSTEM-white text-center  border border-SYSTEM-black rounded-md">
+                    <div className="w-[100%] h-[100px] mt-[-10px] text-xl bg-SYSTEM-white text-center flex justify-center items-center border border-SYSTEM-black rounded-md md:max-h-[50px]">
                         앗! 야생 {data.species.names[2].name}
                         (이)가 나타났다!
                     </div>
