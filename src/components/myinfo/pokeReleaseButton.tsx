@@ -68,7 +68,7 @@ const PokeReleaseButton = ({ poke }: PokemonReleaseButtonProps) => {
         <>
             <CustomButton
                 variant={"common"}
-                size={"small"}
+                size={"xstiny"}
                 shape={"roundedSquare"}
                 onClick={openConfirmModal}
             >

@@ -28,6 +28,7 @@ export const ButtonVariants = cva(
             },
             size: {
                 xtiny: "text-sm",
+                xstiny: "text-sm px-3",
                 tiny: "text-sm px-24",
                 small: "text-sm py-2 px-5 ", //로그인버튼
                 medium: "text-md py-4 px-6",
