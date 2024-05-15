@@ -6,6 +6,7 @@ import { useQueryClient } from "react-query";
 import { useState } from "react";
 import Overlay from "../commons/overlay";
 import PoketMonDetailPage from "../../pages/poketMonDetailPage";
+import PokeReleaseButton from "./pokeReleaseButton";
 
 type PokemonBasketProps = {
     data: {
@@ -29,7 +30,7 @@ const PokemonBasket = ({ data }: PokemonBasketProps) => {
     };
     const handlePokeClick = (poke: Pokemon) => {
         setSelectedPokemon(poke);
-        toggleOverlay(); //오버레이 열기
+        toggleOverlay();
     };
 
     return (
@@ -53,7 +54,10 @@ const PokemonBasket = ({ data }: PokemonBasketProps) => {
                 </div>
                 <div className="w-[90%] h-[600px] overflow-y-auto border-2 border-COMMON-light-gray rounded-xl grid grid-cols-1 bg:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {data.data.map((poke, idx) => (
-                        <div className="flex justify-center" key={idx}>
+                        <div
+                            className="flex justify-center items-center flex-col"
+                            key={idx}
+                        >
                             <PokemonCard
                                 pokeId={poke.data.pokeId}
                                 name={poke.data.name}
@@ -61,6 +65,7 @@ const PokemonBasket = ({ data }: PokemonBasketProps) => {
                                 url={poke.data.url}
                                 onClick={() => handlePokeClick(poke)}
                             />
+                            <PokeReleaseButton poke={poke} />
                             <Overlay
                                 isOpen={isOpen}
                                 onClose={() => setIsOpen(false)}
