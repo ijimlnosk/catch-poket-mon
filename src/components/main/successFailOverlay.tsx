@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Modal from "../commons/modal";
 import { useDispatch } from "react-redux";
 import { setCatching } from "../../libs/redux/catchingSlice";
+import { useQueryClient } from "react-query";
 
 type ResultOverlayProps = {
     result: boolean;
@@ -17,10 +18,11 @@ const SuccessFailOverlay = ({
     const navigate = useNavigate();
     const isSuccess = result === true;
     const dispatch = useDispatch();
-
+    const queryClient = useQueryClient();
     const handleVerify = () => {
         dispatch(setCatching(false));
         navigate("/myinfo");
+        queryClient.invalidateQueries("pokemon");
     };
 
     const handleCloseOrRetry = () => {
