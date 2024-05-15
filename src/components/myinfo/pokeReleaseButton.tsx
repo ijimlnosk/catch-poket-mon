@@ -33,13 +33,19 @@ const PokeReleaseButton = ({ poke }: PokemonReleaseButtonProps) => {
             setModalState({
                 message: "포켓몬을 놓아주었습니다!",
                 buttonText: "확인",
-                buttonAction: closeConfirmModal,
+                buttonAction: () => {
+                    closeConfirmModal();
+                    window.location.reload();
+                },
             });
         } catch (error) {
             setModalState({
                 message: "놓아주던 중 문제가 발생했습니다!",
                 buttonText: "확인",
-                buttonAction: closeConfirmModal,
+                buttonAction: () => {
+                    closeConfirmModal();
+                    window.location.reload();
+                },
             });
         }
         setIsModalOpen(true);
@@ -74,7 +80,7 @@ const PokeReleaseButton = ({ poke }: PokemonReleaseButtonProps) => {
                 onClick={modalState.buttonAction}
                 secondButtonText={
                     isModalOpen && modalState.buttonText === "놓아준다"
-                        ? "취소"
+                        ? "그만둔다"
                         : undefined
                 }
                 onSecondClick={closeConfirmModal}
