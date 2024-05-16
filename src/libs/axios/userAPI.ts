@@ -1,25 +1,49 @@
 import { userDataInstance } from "./axiosInstance";
+import { getPokeData } from "./dataAPI";
 
 export interface UserRequest {
     userId: string;
     password: string;
 }
 
+export interface SignupRequest {
+    userId: string;
+    password: string;
+    data: {
+        nickName: string;
+    };
+}
+
+const defaultUserData: getPokeData = {
+    apiKey: "mobi3rd1234",
+    pair: 2,
+};
+
 //회원가입
-export const postSignup = async (user: UserRequest) => {
-    const response = await userDataInstance.post("/user/sign-up", user);
+export const postSignup = async (user: SignupRequest) => {
+    const response = await userDataInstance.post("/user/sign-up", user, {
+        params: defaultUserData,
+    });
     return response;
 };
 
 //로그인
 export const postSignin = async (user: UserRequest) => {
-    const response = await userDataInstance.post("/user/sign-in", user);
+    const response = await userDataInstance.post("/user/sign-in", user, {
+        params: defaultUserData,
+    });
     return response;
 };
 
 //로그아웃
 export const postSignout = async () => {
-    const response = await userDataInstance.post("/user/sign-out");
+    const response = await userDataInstance.post(
+        "/user/sign-out",
+        {},
+        {
+            params: defaultUserData,
+        }
+    );
     return response;
 };
 
@@ -35,23 +59,32 @@ export const getRefresh = async () => {
 
 //회원정보 수정
 export interface Profile {
-    image?: string;
-    nickName?: string;
+    data: {
+        image?: string;
+        nickName?: string;
+    };
 }
 
 //프로필이미지 수정
 export const patchUpdateProfileUrl = async (image: Profile) => {
     const response = await userDataInstance.patch(
         "/user/update/profileUrl",
-        image
+        image,
+        {
+            params: defaultUserData,
+        }
     );
     return response;
 };
 
 //프로필 닉네임 수정
-export const patchUpdateInfo = async (profile: Profile) => {
-    const response = await userDataInstance.patch("/user/update/info", {
-        nickname: profile.nickName,
-    });
+export const patchUpdateInfo = async (nickName: Profile) => {
+    const response = await userDataInstance.patch(
+        "/user/update/info",
+        nickName,
+        {
+            params: defaultUserData,
+        }
+    );
     return response;
 };
