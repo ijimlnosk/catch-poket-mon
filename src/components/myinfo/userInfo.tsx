@@ -1,12 +1,9 @@
 import { useState } from "react";
 import CustomButton from "../commons/button";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
 import { patchUpdateInfo } from "../../libs/axios/userAPI";
 import LogoutButton from "./logoutButton";
-import {
-    getSessionUserInfo,
-    setSessionUserInfo,
-} from "../../utils/storageUtils";
+import { setSessionUserInfo } from "../../utils/storageUtils";
 
 type userInfo = {
     nickName: string;
@@ -49,7 +46,7 @@ const UserInfo = ({ nickName, userId }: userInfo) => {
                     {editMode ? (
                         <input
                             type="text"
-                            className="w-[300px] text-lg text-center"
+                            className="w-[300px] text-lg text-center border-2 rounded-lg"
                             value={updateNickname}
                             onChange={(e) => setUpdateNickName(e.target.value)}
                         />
