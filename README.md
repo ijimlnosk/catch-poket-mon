@@ -34,7 +34,7 @@ https://github.com/mobi-projects/mobi-3rd-2-typescript/assets/98089768/455a02ed-
 
 
 ## 🟣코드컨벤션
-[포켓몬프로젝트 코드컨벤션 바로가기](https://www.notion.so/8c1c39d447eb4a729fc9affc855c1226)
+[포켓몬프로젝트 코드컨벤션 바로가기](https://amazing-speedwell-e10.notion.site/8c1c39d447eb4a729fc9affc855c1226?pvs=4)
 
 ## 🟤프로젝트 기간
 2024.04.29 - 2024.05.12
