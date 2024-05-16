@@ -9,9 +9,9 @@ interface PokeRequest {
     background: string;
 }
 
-interface getPokeData {
+export interface getPokeData {
     apiKey: string;
-    auth: boolean;
+    auth?: boolean;
     pair: number;
 }
 
