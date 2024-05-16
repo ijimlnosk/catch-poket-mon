@@ -11,7 +11,9 @@ import {
 interface FormValues {
     userId: string;
     password: string;
-    nickname?: string;
+    data?: {
+        nickName: string;
+    };
 }
 
 type InputProps<TFieldValues extends FormValues> = {
@@ -37,6 +39,8 @@ const Input = <TFieldValues extends FormValues>({
     register,
     errors,
 }: InputProps<TFieldValues>): JSX.Element => {
+    const error = errors[name as keyof FieldErrors<TFieldValues>];
+
     return (
         <div className="input-wrapper relative">
             <input
@@ -48,12 +52,11 @@ const Input = <TFieldValues extends FormValues>({
                     className
                 )}
             />
-            {typeof errors !== "undefined" &&
-                typeof errors[name] !== "undefined" && (
-                    <div className="text-SYSTEM-red text-ti text-center">
-                        {errors[name]?.message as ReactNode}
-                    </div>
-                )}
+            {error && (
+                <div className="text-SYSTEM-red text-ti text-center">
+                    {error.message as ReactNode}
+                </div>
+            )}
         </div>
     );
 };

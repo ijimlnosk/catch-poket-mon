@@ -1,5 +1,5 @@
 import { useMutation } from "react-query";
-import { UserRequest, postSignup } from "../libs/axios/userAPI";
+import { SignupRequest, postSignup } from "../libs/axios/userAPI";
 import { useState } from "react";
 
 export const useSignupMutation = () => {
@@ -9,7 +9,7 @@ export const useSignupMutation = () => {
     const toggleModal = () => setIsOpen(!isOpen);
 
     const { mutate } = useMutation(
-        (formData: UserRequest) => postSignup(formData),
+        (formData: SignupRequest) => postSignup(formData),
         {
             onSuccess: (data) => {
                 if (data.status === 200) {
