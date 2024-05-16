@@ -5,7 +5,7 @@ import Input from "../commons/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignupSchema } from "../../constants/schema";
 import logo from "../../assets/imgs/logo.png";
-import { UserRequest } from "../../libs/axios/userAPI";
+import { SignupRequest } from "../../libs/axios/userAPI";
 import Modal from "../commons/modal";
 import { useNavigate } from "react-router-dom";
 
@@ -17,10 +17,10 @@ const SignupForm = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<UserRequest>({
+    } = useForm<SignupRequest>({
         resolver: zodResolver(SignupSchema),
     });
-    const onSubmit = (data: UserRequest) => {
+    const onSubmit = (data: SignupRequest) => {
         mutate(data);
     };
     const handleModalClose = () => {
@@ -48,6 +48,13 @@ const SignupForm = () => {
                         name="password"
                         placeholder="비밀번호를 입력하세요"
                         type="password"
+                        register={register}
+                        errors={errors}
+                    />
+                    <label className="pt-5">NickName</label>
+                    <Input
+                        name="data.nickName"
+                        placeholder="닉네임을 입력해주세요"
                         register={register}
                         errors={errors}
                     />

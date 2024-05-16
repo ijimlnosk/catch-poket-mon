@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CustomButton from "../commons/button";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { patchUpdateInfo } from "../../libs/axios/userAPI";
 import LogoutButton from "./logoutButton";
 
@@ -12,10 +12,15 @@ type userInfo = {
 const UserInfo = ({ nickName, userId }: userInfo) => {
     const [editMode, setEditMode] = useState(false);
     const [updateNickname, setUpdateNickName] = useState(nickName || "");
+    const queryClient = useQueryClient();
 
     const updateMutation = useMutation(patchUpdateInfo, {
         onSuccess: () => {
+            queryClient.invalidateQueries("userInfo");
             setEditMode(false);
+        },
+        onError: (error) => {
+            console.error(error);
         },
     });
 
@@ -23,7 +28,12 @@ const UserInfo = ({ nickName, userId }: userInfo) => {
         setEditMode(true);
     };
     const handleSaveClick = () => {
-        updateMutation.mutate({ nickName: updateNickname });
+        const profileData = {
+            data: {
+                nickName: updateNickname,
+            },
+        };
+        updateMutation.mutate(profileData);
     };
 
     return (
