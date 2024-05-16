@@ -5,6 +5,11 @@
 ### 배포 주소
 [catchPoketMon](https://catchpoketmon.soljk.com/)
 
+### 시연 영상
+https://github.com/mobi-projects/mobi-3rd-2-typescript/assets/98089768/455a02ed-5906-46f2-9c12-a3c1b45b2540
+
+
+
 ## 🖐🏻 야생 포켓몬 잡는 미니 게임 사이트 
 - 모바일 게임 pokemonGo와 닌텐도ds 시절 포켓몬게임을 모티브로 한 사이트 입니다.
 ## ✅ 제공 기능
