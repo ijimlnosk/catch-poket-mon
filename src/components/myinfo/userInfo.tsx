@@ -3,6 +3,10 @@ import CustomButton from "../commons/button";
 import { useMutation, useQueryClient } from "react-query";
 import { patchUpdateInfo } from "../../libs/axios/userAPI";
 import LogoutButton from "./logoutButton";
+import {
+    getSessionUserInfo,
+    setSessionUserInfo,
+} from "../../utils/storageUtils";
 
 type userInfo = {
     nickName: string;
@@ -12,11 +16,11 @@ type userInfo = {
 const UserInfo = ({ nickName, userId }: userInfo) => {
     const [editMode, setEditMode] = useState(false);
     const [updateNickname, setUpdateNickName] = useState(nickName || "");
-    const queryClient = useQueryClient();
 
     const updateMutation = useMutation(patchUpdateInfo, {
         onSuccess: () => {
-            queryClient.invalidateQueries("userInfo");
+            setSessionUserInfo({ userId, nickName: updateNickname });
+            window.location.reload();
             setEditMode(false);
         },
         onError: (error) => {
