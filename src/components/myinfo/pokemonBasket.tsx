@@ -39,9 +39,9 @@ const PokemonBasket = ({ data }: PokemonBasketProps) => {
                 <div className="w-full flex justify-center flex-col items-center pt-4 ">
                     <p className="text-xl  p-2 rounded-xl ">포켓몬 장바구니</p>
                     <div className="w-full flex justify-end">
-                        <p className="text-lg p-8">최대 30마리</p>
+                        <p className="text-lg p-8 pr-[7.5%]">최대 30마리</p>
                     </div>
-                    <div className="w-full flex justify-start items-center pl-12 pb-2">
+                    <div className="w-full flex justify-start items-center pl-[7.5%] pb-2">
                         <CustomButton
                             variant={"common"}
                             shape={"roundedSquare"}
