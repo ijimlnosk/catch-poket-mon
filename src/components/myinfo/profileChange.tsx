@@ -29,7 +29,7 @@ const ProfileChange = () => {
 
     // 파일 입력이 변경되었을 때 호출되는 함수
     const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
-        // 팡리이 선택되었는지 확인
+        // 파일이 선택되었는지 확인
         if (event.target.files && event.target.files[0]) {
             const file = event.target.files[0];
             const reader = new FileReader();
