@@ -52,7 +52,7 @@ const PokemonBasket = ({ data }: PokemonBasketProps) => {
                         </CustomButton>
                     </div>
                 </div>
-                <div className="max-w-[90%] h-[600px] overflow-y-auto border-2 border-COMMON-light-gray rounded-xl grid grid-cols-1 ti:grid-cols-2 sm:grid-cols-3 bg:grid-cols-4">
+                <div className="max-w-[90%] h-[600px] overflow-y-auto border-2 border-COMMON-light-gray rounded-xl grid grid-cols-1 ti:grid-cols-2 sm:grid-cols-3 bg:grid-cols-4"
                     {data.data.map((poke, idx) => (
                         <div
                             className="flex justify-center items-center flex-col"
