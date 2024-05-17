@@ -30,16 +30,7 @@ export const setSessionUserProfile = (profileUrl: string) => {
 export const getSessionUserProfile = () => {
     const profileString = sessionStorage.getItem("userProfile");
     if (profileString) {
-        try {
-            console.log(profileString);
-            return JSON.parse(profileString);
-        } catch (error) {
-            console.error(
-                "Error parsing user profile from session storage:",
-                error
-            );
-            return null;
-        }
+        return JSON.parse(profileString);
     }
     return null;
 };
