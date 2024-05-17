@@ -86,8 +86,7 @@ export const patchUpdateProfileUrl = async (profileImage: Profile) => {
         );
         return response.data.profileUrl;
     } catch (error) {
-        console.error("Error updating profile image:", error);
-        throw error;
+        throw new Error("error");
     }
 };
 //프로필 닉네임 수정
