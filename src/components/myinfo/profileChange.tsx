@@ -1,13 +1,10 @@
 import { ChangeEvent, useState, useEffect } from "react";
-import { useMutation } from "react-query";
-import { patchUpdateProfileUrl } from "../../libs/axios/userAPI";
-import {
-    getSessionUserProfile,
-    setSessionUserProfile,
-} from "../../utils/storageUtils";
+import { getSessionUserProfile } from "../../utils/storageUtils";
+import { useProfileUpdate } from "../../hook/useProfileUpdate";
 
 const ProfileChange = () => {
     const [profileUrl, setProfileUrl] = useState<string | null>(null);
+    const { updateProfileUrl, mutation } = useProfileUpdate();
 
     // 컴포넌트가 처음 마운트될 때 세션에서 프로필 URL을 가져와 상태를 설정
     useEffect(() => {
@@ -19,24 +16,17 @@ const ProfileChange = () => {
         }
     }, []);
 
-    // 프로필 이미지를 업데이트하는 mutation 설정
-    const mutation = useMutation(patchUpdateProfileUrl, {
-        onSuccess: (data) => {
-            setSessionUserProfile(data);
-            setProfileUrl(data);
-        },
-    });
+    useEffect(() => {
+        if (mutation.isSuccess && mutation.data) {
+            setProfileUrl(mutation.data);
+        }
+    }, [mutation.data]);
 
     // 파일 입력이 변경되었을 때 호출되는 함수
     const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
         // 파일이 선택되었는지 확인
         if (event.target.files && event.target.files[0]) {
-            const file = event.target.files[0];
-            const reader = new FileReader();
-            // 파일을 데이터 URL로 읽기 시작
-            reader.readAsDataURL(file);
-            // 이미지를 서버에 업로드
-            mutation.mutate({ data: { image: file } });
+            updateProfileUrl(event.target.files[0]);
         }
     };
 
@@ -53,10 +43,10 @@ const ProfileChange = () => {
 
                 {mutation.isError && (
                     <p>
-                        Error:
+                        오류:
                         {mutation.error instanceof Error
                             ? mutation.error.message
-                            : "An error occurred"}
+                            : "오류가 발생했습니다"}
                     </p>
                 )}
             </div>
