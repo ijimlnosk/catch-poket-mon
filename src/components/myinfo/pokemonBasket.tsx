@@ -39,9 +39,9 @@ const PokemonBasket = ({ data }: PokemonBasketProps) => {
                 <div className="w-full flex justify-center flex-col items-center pt-4 ">
                     <p className="text-xl  p-2 rounded-xl ">포켓몬 장바구니</p>
                     <div className="w-full flex justify-end">
-                        <p className="text-lg p-8">최대 30마리</p>
+                        <p className="text-lg p-8 pr-[7.5%]">최대 30마리</p>
                     </div>
-                    <div className="w-full flex justify-start items-center pl-12 pb-2">
+                    <div className="w-full flex justify-start items-center pl-[7.5%] pb-2">
                         <CustomButton
                             variant={"common"}
                             shape={"roundedSquare"}
@@ -52,7 +52,7 @@ const PokemonBasket = ({ data }: PokemonBasketProps) => {
                         </CustomButton>
                     </div>
                 </div>
-                <div className="max-w-[90%] h-[600px] overflow-y-auto border-2 border-COMMON-light-gray rounded-xl grid grid-cols-1 bg:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <div className="max-w-[90%] h-[600px] overflow-y-auto border-2 border-COMMON-light-gray rounded-xl grid grid-cols-1 ti:grid-cols-2 sm:grid-cols-3 bg:grid-cols-4"
                     {data.data.map((poke, idx) => (
                         <div
                             className="flex justify-center items-center flex-col"

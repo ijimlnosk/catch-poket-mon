@@ -47,15 +47,15 @@ const UserInfo = ({ nickName, userId }: userInfo) => {
                 onClose={() => setIsError(false)}
                 buttonText="확인"
             />
-            <div className="w-[600px] h-[300px] bg-SYSTEM-white ml-8 rounded-xl flex justify-center items-center flex-col p-4">
+            <div className="w-[600px] h-[400px] bg:h-[300px] bg-SYSTEM-white ml-8 rounded-xl flex justify-center items-center flex-col p-4">
                 <p className="text-lg pb-4">회원정보</p>
-                <div className="w-[90%] h-[200px] border-2 border-COMMON-light_gray rounded-xl flex flex-col justify-center">
-                    <div className="w-full flex flex-row  justify-start items-center pt-4">
+                <div className="w-[90%] h-[400px] border-2 border-COMMON-light_gray rounded-xl flex flex-col justify-center ">
+                    <div className="w-full flex flex-col justify-start items-center pt-4 bg:flex-row ">
                         <p className="text-lg pl-4">닉네임 :</p>
                         {editMode ? (
                             <input
                                 type="text"
-                                className="w-[300px] text-lg text-center border-2 rounded-lg"
+                                className="w-[200px] text-lg text-center border-2 rounded-lg"
                                 value={updateNickname}
                                 onChange={(e) =>
                                     setUpdateNickName(e.target.value)
@@ -76,7 +76,7 @@ const UserInfo = ({ nickName, userId }: userInfo) => {
                             {editMode ? "완료" : "수정"}
                         </CustomButton>
                     </div>
-                    <div className="w-full flex flex-row  justify-start items-center pt-4">
+                    <div className="w-full flex flex-col justify-start items-center pt-4 bg:flex-row ">
                         <p className="text-lg pl-4">아이디 :</p>
                         <p className="w-[300px] text-lg text-center">
                             {userId}
