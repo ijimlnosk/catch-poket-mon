@@ -60,23 +60,36 @@ export const getRefresh = async () => {
 //회원정보 수정
 export interface Profile {
     data: {
-        image?: string;
+        image?: File;
         nickName?: string;
     };
 }
 
 //프로필이미지 수정
-export const patchUpdateProfileUrl = async (image: Profile) => {
-    const response = await userDataInstance.patch(
-        "/user/update/profileUrl",
-        image,
-        {
-            params: defaultUserData,
-        }
-    );
-    return response;
+export const patchUpdateProfileUrl = async (profileImage: Profile) => {
+    const formData = new FormData();
+    if (profileImage.data.image) {
+        formData.append("image", profileImage.data.image);
+    } else {
+        throw new Error("No image file provided");
+    }
+    try {
+        const response = await userDataInstance.patch(
+            "/user/update/profileUrl",
+            formData,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+                params: defaultUserData,
+            }
+        );
+        return response.data.profileUrl;
+    } catch (error) {
+        console.error("Error updating profile image:", error);
+        throw error;
+    }
 };
-
 //프로필 닉네임 수정
 export const patchUpdateInfo = async (nickName: Profile) => {
     const response = await userDataInstance.patch(
