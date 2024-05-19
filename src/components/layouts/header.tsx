@@ -29,7 +29,7 @@ const Header = () => {
                 <img src={monsterball} className="h-12" />
                 <img src={logo} className="h-12 hidden sm:block" />
             </div>
-            <nav className="border-2 flex flex-row">
+            <nav className="flex flex-row">
                 <ul className="flex flex-col justify-center items-center p-6 sm:flex-row sm:space-x-4 ">
                     <li className="text-SYSTEM-red text-bg hover:text-SYSTEM-black hover:cursor-pointer">
                         포켓몬도감
