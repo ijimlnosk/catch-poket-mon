@@ -28,7 +28,7 @@ const StartPoke = ({ onGameStart }: GameStartProps) => {
         <>
             {gameStart ? (
                 <div className="w-full flex flex-col justify-center items-center">
-                    <div className="w-full h-[600px] flex items-center justify-center">
+                    <div className="w-full h-[600px] flex items-center justify-center lg:h-[700px]">
                         <div className="w-full h-[600px] flex justify-center items-center flex-col ">
                             <img
                                 src={unknownPoketMon}
