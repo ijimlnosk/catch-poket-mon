@@ -28,8 +28,8 @@ const StartPoke = ({ onGameStart }: GameStartProps) => {
         <>
             {gameStart ? (
                 <div className="w-full flex flex-col justify-center items-center">
-                    <div className="w-full flex items-center justify-center">
-                        <div className="w-full h-[700px] flex justify-center items-center flex-col ">
+                    <div className="w-full h-[600px] flex items-center justify-center">
+                        <div className="w-full h-[600px] flex justify-center items-center flex-col ">
                             <img
                                 src={unknownPoketMon}
                                 className="h-[500px] lg:h-[600px]"
@@ -40,7 +40,7 @@ const StartPoke = ({ onGameStart }: GameStartProps) => {
                         </div>
                     </div>
                     <button
-                        className="w-[150px] h-[60px] bg-MAIN-gray"
+                        className="w-[150px] h-[60px] bg-MAIN-gray "
                         onClick={handleNextLevel}
                     >
                         확인하기
