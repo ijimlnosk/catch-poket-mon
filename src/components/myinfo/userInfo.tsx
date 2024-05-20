@@ -1,10 +1,8 @@
 import { useState } from "react";
 import CustomButton from "../commons/button";
-import { useMutation } from "react-query";
-import { patchUpdateInfo } from "../../libs/axios/userAPI";
 import LogoutButton from "./logoutButton";
-import { setSessionUserInfo } from "../../utils/storageUtils";
 import Modal from "../commons/modal";
+import { useUpdateUser } from "../../hook/useUpdateUser";
 
 type userInfo = {
     nickName: string;
@@ -16,16 +14,7 @@ const UserInfo = ({ nickName, userId }: userInfo) => {
     const [updateNickname, setUpdateNickName] = useState(nickName || "");
     const [isError, setIsError] = useState(false);
 
-    const updateMutation = useMutation(patchUpdateInfo, {
-        onSuccess: () => {
-            setSessionUserInfo({ userId, nickName: updateNickname });
-            window.location.reload();
-            setEditMode(false);
-        },
-        onError: () => {
-            setIsError(true);
-        },
-    });
+    const { mutate } = useUpdateUser(userId, updateNickname);
 
     const handleEditClick = () => {
         setEditMode(true);
@@ -33,10 +22,11 @@ const UserInfo = ({ nickName, userId }: userInfo) => {
     const handleSaveClick = () => {
         const profileData = {
             data: {
+                userId: userId,
                 nickName: updateNickname,
             },
         };
-        updateMutation.mutate(profileData);
+        mutate(profileData);
     };
 
     return (
