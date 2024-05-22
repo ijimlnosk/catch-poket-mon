@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { usePokeDataInfinite } from "../../hook/usePokedexInfinity";
+import {
+    PokeDetails,
+    usePokeDataInfinite,
+} from "../../hook/usePokedexInfinity";
 import { getPokemon, getPokemonSpecies } from "../../libs/axios/pokeAPI";
 import { Pokemon } from "../../types/pokeTypes/pokemonData";
 import LoadingPage from "../commons/loadingPage";
@@ -29,11 +32,7 @@ const PokemonInfiniteList = () => {
     const [isOpen, setIsOpen] = useState(false);
     const toggleOverlay = () => setIsOpen(!isOpen);
 
-    console.log(data, "data ");
-    console.log(hasNextPage, "hasNextPage ");
-    console.log(isFetchingNextPage, "isFetchingNextPage");
-
-    const handlePokeClick = (pokeDetail: unknown) => {
+    const handlePokeClick = (pokeDetail: PokeDetails) => {
         const poke = convertToPokemon(pokeDetail);
         setSelectedPokemon(poke);
         toggleOverlay();

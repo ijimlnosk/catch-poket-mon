@@ -10,7 +10,7 @@ interface PokeApiProps {
     getPokemon: (pokeId: number) => Promise<PokemonRoot>;
 }
 
-interface PokeDetails {
+export interface PokeDetails {
     species: SpeciesRoot;
     pokemon: PokemonRoot;
 }
@@ -47,13 +47,10 @@ export const usePokeDataInfinite = ({
         },
         {
             getNextPageParam: (lastPage, allPages) => {
-                // 다음 페이지의 파라미터 결정 (예: 마지막 ID 기반 증가)
                 if (!lastPage || lastPage.length === 0) {
                     return undefined;
                 } 
-                const lastPokemon = lastPage[lastPage.length -1 ];
-                const nextId = lastPokemon ? lastPokemon.pokemon.id + 1 : null;
-                return nextId && nextId < 900 ? nextId : undefined; 
+                return allPages.flat().length;
             },
             refetchOnWindowFocus: false,
             staleTime: Infinity,
