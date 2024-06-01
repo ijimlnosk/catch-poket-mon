@@ -1,9 +1,29 @@
-import { PokeDetails } from "../hook/usePokedexInfinity";
-import { Pokemon } from "../types/pokeTypes/pokemonData";
+// import { PokeDetails } from "../hook/usePokedexInfinity";
+import { Pokemon, PokedexConvertType } from "../types/pokeTypes/pokemonData";
+
+interface PokeDetails {
+    species: {
+        names: { name: string }[];
+    };
+    pokemon: {
+        id: number;
+        types: {
+            type: {
+                name: PokedexConvertType; // string으로 설정하여 모든 타입 이름을 허용
+            };
+        }[];
+        sprites: {
+            other: {
+                showdown: {
+                    front_default: string;
+                };
+            };
+        };
+    };
+}
 
 
-//이부분 타입 몰겠습니다 뭘로 해야하죠?
-export const formatType = (type) => {
+export const formatType = (type: {type: {name: PokedexConvertType}}[]):PokedexConvertType[] => {
     return type.map((typeInfo) => typeInfo.type.name);
 };
 
