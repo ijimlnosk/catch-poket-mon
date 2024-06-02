@@ -1,4 +1,3 @@
-// import { PokeDetails } from "../hook/usePokedexInfinity";
 import { Pokemon, PokedexConvertType } from "../types/pokeTypes/pokemonData";
 
 interface PokeDetails {
@@ -9,7 +8,7 @@ interface PokeDetails {
         id: number;
         types: {
             type: {
-                name: PokedexConvertType; // string으로 설정하여 모든 타입 이름을 허용
+                name: PokedexConvertType; 
             };
         }[];
         sprites: {

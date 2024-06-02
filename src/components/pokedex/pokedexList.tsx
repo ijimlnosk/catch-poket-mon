@@ -41,9 +41,7 @@ const PokemonInfiniteList = () => {
     const { ref } = useInView({
         threshold: 0.5,
         onChange: (inView: boolean) => {
-            console.log(`inView: ${inView}`, "dkdkdkdkdk");
             if (inView && hasNextPage && !isFetchingNextPage) {
-                console.log("Fetching next page...");
                 fetchNextPage();
             }
         },
