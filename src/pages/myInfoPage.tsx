@@ -26,8 +26,9 @@ const MyInfoPage = () => {
 
     return (
         <div className="w-full bg-MAIN-purple flex items-center justify-cneter flex-col pb-8">
-            <div className="w-full p-[20px] flex items-center justify-center flex-row">
+            <div className="w-full p-[20px] flex items-center justify-center flex-col sm:flex-row">
                 <ProfileChange />
+                <div className="ti:w-[10px] ti:h-[20px]" />
                 <UserInfo
                     nickName={userInfo.nickName}
                     userId={userInfo.userId}

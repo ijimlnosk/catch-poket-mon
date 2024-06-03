@@ -1,6 +1,10 @@
 import { useMutation } from "react-query";
 import { UserRequest, postSignin } from "../libs/axios/userAPI";
-import { setSessionToken, setSessionUserInfo } from "../utils/storageUtils";
+import {
+    setSessionToken,
+    setSessionUserInfo,
+    setSessionUserProfile,
+} from "../utils/storageUtils";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -20,6 +24,8 @@ export const useSigninMutation = () => {
                         userId: data.data.userId,
                         nickName: data.data.info.nickName,
                     };
+                    const profile = data.data.info.profileUrl;
+                    setSessionUserProfile(profile);
                     setSessionUserInfo(userInfo);
                     navigate("/");
                 }

@@ -66,7 +66,12 @@ const SigninScreen = ({
                         <div className="w-full h-4 bg-SYSTEM-black"></div>
                     </div>
                     <div className="min-w-[310px] h-[160px] bg-SYSTEM-black rounded-b-full flex flex-col justify-start items-center">
-                        <div className="w-60 h-32 bg-SYSTEM-white rounded-b-full"></div>
+                        <div className="w-60 h-32 bg-SYSTEM-white rounded-b-full">
+                            <button
+                                onClick={handleSections}
+                                className="w-60 h-32  rounded-b-full hover:bg-COMMON-light-gray  transition-colors"
+                            ></button>
+                        </div>
                     </div>
                     <div className="w-[45%]">
                         <div className="w-full h-4 bg-SYSTEM-black "></div>

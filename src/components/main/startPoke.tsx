@@ -28,16 +28,19 @@ const StartPoke = ({ onGameStart }: GameStartProps) => {
         <>
             {gameStart ? (
                 <div className="w-full flex flex-col justify-center items-center">
-                    <div className="w-full flex items-center justify-center">
-                        <div className="w-full h-[700px] flex justify-center items-center flex-col ">
-                            <img src={unknownPoketMon} className="h-[600px]" />
+                    <div className="w-full h-[600px] flex items-center justify-center lg:h-[700px]">
+                        <div className="w-full h-[600px] flex justify-center items-center flex-col ">
+                            <img
+                                src={unknownPoketMon}
+                                className="h-[500px] lg:h-[600px]"
+                            />
                             <div className="max-w-[922px] w-[100%] h-[100px] mt-[-10px] text-xl bg-SYSTEM-white text-center flex justify-center items-center border border-SYSTEM-black rounded-md md:max-h-[50px]">
                                 앗! 야생 포켓몬이 나타났다!
                             </div>
                         </div>
                     </div>
                     <button
-                        className="w-[150px] h-[60px] bg-MAIN-gray"
+                        className="w-[150px] h-[60px] bg-MAIN-gray "
                         onClick={handleNextLevel}
                     >
                         확인하기
