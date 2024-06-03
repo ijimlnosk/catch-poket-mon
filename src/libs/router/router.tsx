@@ -4,6 +4,7 @@ import MyInfoPage from "../../pages/myInfoPage";
 import AdminRouter from "./adminRouter";
 import SigninPage from "../../pages/signinPage";
 import SignupPage from "../../pages/signupPage";
+import PokedexPage from "../../pages/pokedexPage";
 
 const ADMIN_ROUTER: RouteObject = {
     element: <AdminRouter />,
@@ -15,6 +16,10 @@ const ADMIN_ROUTER: RouteObject = {
         {
             path: "/myinfo",
             element: <MyInfoPage />,
+        },
+        {
+            path: "/pokedex",
+            element: <PokedexPage />,
         },
     ],
 };

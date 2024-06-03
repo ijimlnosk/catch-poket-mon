@@ -20,6 +20,9 @@ const Header = () => {
         navigate("/");
         queryClient.invalidateQueries("pokeData");
     };
+    const onMovePokedex = () => {
+        navigate("/pokedex");
+    };
     return (
         <header className="flex items-center justify-between p-4  bg-SYSTEM-whte h-[140px] w-[100%]">
             <div
@@ -29,9 +32,14 @@ const Header = () => {
                 <img src={monsterball} className="h-12" />
                 <img src={logo} className="h-12 hidden sm:block" />
             </div>
-            <nav className="flex flex-row">
-                <ul className="flex flex-col justify-center items-center p-6 sm:flex-row sm:space-x-4 ">
-                    <li className="text-SYSTEM-red text-bg hover:text-SYSTEM-black hover:cursor-pointer">
+
+            <nav>
+                <ul className="flex space-x-4 flex-grow p-6 ">
+                    <li
+                        className="text-SYSTEM-red text-bg hover:text-SYSTEM-black hover:cursor-pointer"
+                        onClick={onMovePokedex}
+                    >
+
                         포켓몬도감
                     </li>
                     <li
