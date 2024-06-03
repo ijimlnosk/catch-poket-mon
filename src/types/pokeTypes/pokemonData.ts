@@ -88,4 +88,6 @@ export type PokedexConvertType =
         | "fighting"
         | "shadow"
         | "unknown"
+        | null
+        | undefined
     
