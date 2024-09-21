@@ -2,9 +2,9 @@ import { getSessionUserInfo } from "../utils/storageUtils";
 import { useQuery } from "react-query";
 import { getData } from "../libs/axios/dataAPI";
 import LoadingPage from "../components/commons/loadingPage";
-import ProfileChange from "../components/myInfo/profileChange";
-import UserInfo from "../components/myInfo/userInfo";
-import PokemonBasket from "../components/myInfo/pokemonBasket";
+import ProfileChange from "../components/myinfo/profileChange";
+import UserInfo from "../components/myinfo/userInfo";
+import PokemonBasket from "../components/myinfo/pokemonBasket";
 
 const MyInfoPage = () => {
     const userInfo = getSessionUserInfo();
@@ -34,7 +34,7 @@ const MyInfoPage = () => {
                     userId={userInfo.userId}
                 />
             </div>
-            <PokemonBasket data={data} />
+            <PokemonBasket data={data.data} />
         </div>
     );
 };

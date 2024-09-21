@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Pokemon } from "../../types/pokeTypes/pokemonData";
+import { Pokemon, PokemonData } from "../../types/pokeTypes/pokemonData";
 import { deleteData } from "../../libs/axios/dataAPI";
 import { useQueryClient } from "react-query";
 import CustomButton from "../commons/button";
 import Modal from "../commons/modal";
 
 type PokemonReleaseButtonProps = {
-    poke: Pokemon;
+    poke: PokemonData;
 };
 
 interface ModalState {
@@ -26,9 +26,11 @@ const PokeReleaseButton = ({ poke }: PokemonReleaseButtonProps) => {
 
     const handleDeletePoke = async () => {
         try {
-            await deleteData(poke.id);
+            await deleteData(String(poke.id));
             queryClient.setQueryData<Pokemon[]>("pokeData", (oldData) => {
-                return oldData ? oldData.filter((p) => p.id !== poke.id) : [];
+                return oldData
+                    ? oldData.filter((p) => p.id !== String(poke.id))
+                    : [];
             });
             setModalState({
                 message: "포켓몬을 놓아주었습니다!",

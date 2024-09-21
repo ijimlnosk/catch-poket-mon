@@ -1,5 +1,6 @@
 export type PokemonData = {
-    pokeId: number;
+    id?: number;
+    poke_id: number;
     name: string;
     type: Array<
         | "rock"
@@ -31,7 +32,7 @@ export type PokemonData = {
 
 export type Pokemon = {
     data: PokemonData;
-    id: string                   ;
+    id: string;
 };
 
 export type PokemonType = {
@@ -63,31 +64,30 @@ export type PokemonType = {
 
 export type Type = {
     type: {
-        name: string
-    }
-}
+        name: string;
+    };
+};
 
-export type PokedexConvertType = 
-        | "rock"
-        | "grass"
-        | "ice"
-        | "fire"
-        | "normal"
-        | "poison"
-        | "ground"
-        | "electric"
-        | "flying"
-        | "water"
-        | "steel"
-        | "ghost"
-        | "bug"
-        | "dragon"
-        | "dark"
-        | "fairy"
-        | "psychic"
-        | "fighting"
-        | "shadow"
-        | "unknown"
-        | null
-        | undefined
-    
+export type PokedexConvertType =
+    | "rock"
+    | "grass"
+    | "ice"
+    | "fire"
+    | "normal"
+    | "poison"
+    | "ground"
+    | "electric"
+    | "flying"
+    | "water"
+    | "steel"
+    | "ghost"
+    | "bug"
+    | "dragon"
+    | "dark"
+    | "fairy"
+    | "psychic"
+    | "fighting"
+    | "shadow"
+    | "unknown"
+    | null
+    | undefined;
