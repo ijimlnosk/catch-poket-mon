@@ -4,7 +4,10 @@ import {
     usePokeDataInfinite,
 } from "../../hook/usePokedexInfinity";
 import { getPokemon, getPokemonSpecies } from "../../libs/axios/pokeAPI";
-import { PokedexConvertType, Pokemon } from "../../types/pokeTypes/pokemonData";
+import {
+    PokedexConvertType,
+    PokemonData,
+} from "../../types/pokeTypes/pokemonData";
 import LoadingPage from "../commons/loadingPage";
 import PokemonCard from "../commons/pokemonCard";
 import Overlay from "../commons/overlay";
@@ -24,7 +27,7 @@ const PokemonInfiniteList = () => {
         getPokemonSpecies: getPokemonSpecies,
         getPokemon: getPokemon,
     });
-    const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(
+    const [selectedPokemon, setSelectedPokemon] = useState<PokemonData | null>(
         null
     );
     const [isOpen, setIsOpen] = useState(false);
@@ -66,7 +69,7 @@ const PokemonInfiniteList = () => {
                                     >
                                         <PokemonCard
                                             key={poke.pokemon.id}
-                                            pokeId={poke.pokemon.id}
+                                            poke_id={poke.pokemon.id}
                                             name={poke.species.names[2].name}
                                             type={poke.pokemon.types.map(
                                                 (typeInfo) =>

@@ -1,21 +1,19 @@
-import { Pokemon } from "../../types/pokeTypes/pokemonData";
+import { PokemonData } from "../../types/pokeTypes/pokemonData";
 import PokemonCard from "../commons/pokemonCard";
 import CustomButton from "../commons/button";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "react-query";
 import { useState } from "react";
+import PokeReleaseButton from "./pokeReleaseButton";
 import Overlay from "../commons/overlay";
 import PoketMonDetailPage from "../../pages/poketMonDetailPage";
-import PokeReleaseButton from "./pokeReleaseButton";
 
 type PokemonBasketProps = {
-    data: {
-        data: Pokemon[];
-    };
+    data: PokemonData[] | undefined;
 };
 
 const PokemonBasket = ({ data }: PokemonBasketProps) => {
-    const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(
+    const [selectedPokemon, setSelectedPokemon] = useState<PokemonData | null>(
         null
     );
     const [isOpen, setIsOpen] = useState(false);
@@ -28,10 +26,12 @@ const PokemonBasket = ({ data }: PokemonBasketProps) => {
         navigate("/");
         queryClient.invalidateQueries("pokeData");
     };
-    const handlePokeClick = (poke: Pokemon) => {
+    const handlePokeClick = (poke: PokemonData) => {
         setSelectedPokemon(poke);
         toggleOverlay();
     };
+
+    const pokemonData = data || [];
 
     return (
         <div className="w-full p-[20px] flex items-center justify-center flex-col ">
@@ -53,33 +53,39 @@ const PokemonBasket = ({ data }: PokemonBasketProps) => {
                     </div>
                 </div>
                 <div className="max-w-[90%] h-[600px] overflow-y-auto border-2 border-COMMON-light-gray rounded-xl grid grid-cols-1 ti:grid-cols-2 sm:grid-cols-3 bg:grid-cols-4">
-                    {data.data.map((poke, idx) => (
-                        <div
-                            className="flex justify-center items-center flex-col"
-                            key={idx}
-                        >
-                            <PokemonCard
-                                pokeId={poke.data.pokeId}
-                                name={poke.data.name}
-                                type={poke.data.type}
-                                url={poke.data.url}
-                                onClick={() => handlePokeClick(poke)}
-                            />
-                            <PokeReleaseButton poke={poke} />
-                            <Overlay
-                                isOpen={isOpen}
-                                onClose={() => setIsOpen(false)}
-                                widthCss={"max-w-3xl"}
-                                heightCss={"h-1/2"}
+                    {pokemonData.length > 0 ? (
+                        pokemonData.map((poke, idx) => (
+                            <div
+                                className="flex justify-center items-center flex-col"
+                                key={idx}
                             >
-                                {selectedPokemon && (
-                                    <PoketMonDetailPage
-                                        poke={selectedPokemon}
-                                    />
-                                )}
-                            </Overlay>
-                        </div>
-                    ))}
+                                <PokemonCard
+                                    id={poke.id}
+                                    poke_id={poke.poke_id || 0}
+                                    name={poke.name}
+                                    type={poke.type}
+                                    url={poke.url}
+                                    onClick={() => handlePokeClick(poke)}
+                                />
+                                <PokeReleaseButton poke={poke} />
+
+                                <Overlay
+                                    isOpen={isOpen}
+                                    onClose={() => setIsOpen(false)}
+                                    widthCss={"max-w-3xl"}
+                                    heightCss={"h-[300px]"}
+                                >
+                                    {selectedPokemon && (
+                                        <PoketMonDetailPage
+                                            poke={selectedPokemon}
+                                        />
+                                    )}
+                                </Overlay>
+                            </div>
+                        ))
+                    ) : (
+                        <p>포켓몬 데이터를 불러오지 못했습니다.</p>
+                    )}
                 </div>
             </div>
         </div>

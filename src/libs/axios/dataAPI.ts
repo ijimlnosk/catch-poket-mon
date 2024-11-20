@@ -1,4 +1,4 @@
-import { Pokemon } from "../../types/pokeTypes/pokemonData";
+import { PokemonData } from "../../types/pokeTypes/pokemonData";
 import { userDataInstance } from "./axiosInstance";
 
 interface PokeRequest {
@@ -23,19 +23,13 @@ const defaultPokeData: getPokeData = {
 
 //포켓몬 포획 / 저장
 export const postData = async (postPokeData: PokeRequest) => {
-    const postDataResponse = await userDataInstance.post(
-        "/data/poke",
-        {
-            pokeId: postPokeData.poke_id,
-            type: postPokeData.type,
-            name: postPokeData.name,
-            url: postPokeData.url,
-            background: postPokeData.background,
-        },
-        {
-            params: defaultPokeData,
-        }
-    );
+    const postDataResponse = await userDataInstance.post("/data/poke", {
+        pokeId: postPokeData.poke_id,
+        type: postPokeData.type,
+        name: postPokeData.name,
+        url: postPokeData.url,
+        background: postPokeData.background,
+    });
     return postDataResponse.data;
 };
 
@@ -43,18 +37,21 @@ export const postData = async (postPokeData: PokeRequest) => {
 export const getData = async (
     startPage: number,
     endPage: number
-): Promise<{ data: Pokemon[] }> => {
-    const requests = Array.from({ length: endPage - startPage + 1 }, (_, i) =>
-        userDataInstance.get("/data/poke", {
-            params: {
-                ...defaultPokeData,
-                page: startPage + i,
-            },
-        })
-    );
-    const responses = await Promise.all(requests);
-    const pokemons = responses.flatMap((res) => res.data.data);
-    return { data: pokemons };
+): Promise<{ data: PokemonData[] }> => {
+    try {
+        const requests = Array.from(
+            { length: endPage - startPage + 1 },
+            (_, i) =>
+                userDataInstance.get("/data/poke", {
+                    params: { page: startPage + i },
+                })
+        );
+        const responses = await Promise.all(requests);
+        const pokemons = responses.flatMap((res) => res.data);
+        return { data: pokemons };
+    } catch (error) {
+        throw error;
+    }
 };
 
 //포획된 포켓몬 놓아주기

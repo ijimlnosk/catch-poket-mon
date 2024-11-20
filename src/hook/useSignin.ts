@@ -22,9 +22,9 @@ export const useSigninMutation = () => {
                     setSessionToken(data.data.token);
                     const userInfo = {
                         userId: data.data.userId,
-                        nickName: data.data.info.nickName,
+                        nickName: data.data.nickName,
                     };
-                    const profile = data.data.info.profileUrl;
+                    const profile = data.data.profileUrl;
                     setSessionUserProfile(profile);
                     setSessionUserInfo(userInfo);
                     navigate("/");

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import CustomButton from "../commons/button";
-import LogoutButton from "./logoutButton";
 import Modal from "../commons/modal";
 import { useUpdateUser } from "../../hook/useUpdateUser";
+import LogoutButton from "./logoutButton";
 
 type userInfo = {
     nickName: string;
